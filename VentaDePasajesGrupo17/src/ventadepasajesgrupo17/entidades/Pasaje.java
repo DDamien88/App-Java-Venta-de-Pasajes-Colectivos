@@ -11,7 +11,7 @@ import java.time.LocalTime;
  *
  * @author Marianela
  */
-public class Pasajes {
+public class Pasaje {
     private int id_pasaje;
     private Pasajero id_pasajero;
     private Colectivo id_colectivo;
@@ -21,10 +21,10 @@ public class Pasajes {
     private int asiento;
     private Double precio;
 
-    public Pasajes() {
+    public Pasaje() {
     }
 
-    public Pasajes(int id_pasaje, Pasajero id_pasajero, Colectivo id_colectivo, Ruta id_ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
+    public Pasaje(int id_pasaje, Pasajero id_pasajero, Colectivo id_colectivo, Ruta id_ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
         this.id_pasaje = id_pasaje;
         this.id_pasajero = id_pasajero;
         this.id_colectivo = id_colectivo;
@@ -35,7 +35,7 @@ public class Pasajes {
         this.precio = precio;
     }
 
-    public Pasajes(Pasajero id_pasajero, Colectivo id_colectivo, Ruta id_ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
+    public Pasaje(Pasajero id_pasajero, Colectivo id_colectivo, Ruta id_ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
         this.id_pasajero = id_pasajero;
         this.id_colectivo = id_colectivo;
         this.id_ruta = id_ruta;
