@@ -4,6 +4,9 @@
  */
 package ventadepasajesgrupo17;
 
+import ventadepasajesgrupo17.accesoADatos.ColectivoData;
+import ventadepasajesgrupo17.entidades.Colectivo;
+
 /**
  *
  * @author Damián
@@ -14,9 +17,15 @@ public class VentaDePasajesGrupo17 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        //Damián
-        //asdasdasd
+        
+        ColectivoData coleData= new ColectivoData();
+        Colectivo cole= new Colectivo(2,"pha-589", "VW", "2018", 30);
+        
+        //coleData.guardarColectivo(cole);
+        coleData.modificarColectivo(cole);
+        
+        
+       
     }
     
 }
