@@ -12,10 +12,11 @@ import java.time.LocalTime;
  * @author Marianela
  */
 public class Pasaje {
+
     private int id_pasaje;
-    private Pasajero id_pasajero;
-    private Colectivo id_colectivo;
-    private Ruta id_ruta;
+    private Pasajero pasajero;
+    private Colectivo colectivo;
+    private Ruta ruta;
     private LocalDate fecha_viaje;
     private LocalTime hora_viaje;
     private int asiento;
@@ -24,21 +25,21 @@ public class Pasaje {
     public Pasaje() {
     }
 
-    public Pasaje(int id_pasaje, Pasajero id_pasajero, Colectivo id_colectivo, Ruta id_ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
+    public Pasaje(int id_pasaje, Pasajero pasajero, Colectivo colectivo, Ruta ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
         this.id_pasaje = id_pasaje;
-        this.id_pasajero = id_pasajero;
-        this.id_colectivo = id_colectivo;
-        this.id_ruta = id_ruta;
+        this.pasajero = pasajero;
+        this.colectivo = colectivo;
+        this.ruta = ruta;
         this.fecha_viaje = fecha_viaje;
         this.hora_viaje = hora_viaje;
         this.asiento = asiento;
         this.precio = precio;
     }
 
-    public Pasaje(Pasajero id_pasajero, Colectivo id_colectivo, Ruta id_ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
-        this.id_pasajero = id_pasajero;
-        this.id_colectivo = id_colectivo;
-        this.id_ruta = id_ruta;
+    public Pasaje(Pasajero pasajero, Colectivo colectivo, Ruta ruta, LocalDate fecha_viaje, LocalTime hora_viaje, int asiento, Double precio) {
+        this.pasajero = pasajero;
+        this.colectivo = colectivo;
+        this.ruta = ruta;
         this.fecha_viaje = fecha_viaje;
         this.hora_viaje = hora_viaje;
         this.asiento = asiento;
@@ -53,28 +54,28 @@ public class Pasaje {
         this.id_pasaje = id_pasaje;
     }
 
-    public Pasajero getId_pasajero() {
-        return id_pasajero;
+    public Pasajero getPasajero() {
+        return pasajero;
     }
 
-    public void setId_pasajero(Pasajero id_pasajero) {
-        this.id_pasajero = id_pasajero;
+    public void setPasajero(Pasajero pasajero) {
+        this.pasajero = pasajero;
     }
 
-    public Colectivo getId_colectivo() {
-        return id_colectivo;
+    public Colectivo getColectivo() {
+        return colectivo;
     }
 
-    public void setId_colectivo(Colectivo id_colectivo) {
-        this.id_colectivo = id_colectivo;
+    public void setColectivo(Colectivo colectivo) {
+        this.colectivo = colectivo;
     }
 
-    public Ruta getId_ruta() {
-        return id_ruta;
+    public Ruta getRuta() {
+        return ruta;
     }
 
-    public void setId_ruta(Ruta id_ruta) {
-        this.id_ruta = id_ruta;
+    public void setRuta(Ruta ruta) {
+        this.ruta = ruta;
     }
 
     public LocalDate getFecha_viaje() {
@@ -111,8 +112,9 @@ public class Pasaje {
 
     @Override
     public String toString() {
-        return "Pasajes{" + "id_pasaje=" + id_pasaje + ", id_pasajero=" + id_pasajero + ", id_colectivo=" + id_colectivo + ", id_ruta=" + id_ruta + ", fecha_viaje=" + fecha_viaje + ", hora_viaje=" + hora_viaje + ", asiento=" + asiento + ", precio=" + precio + '}';
+        return "Pasaje{" + "id_pasaje=" + id_pasaje + ", pasajero=" + pasajero + ", colectivo=" + colectivo + ", ruta=" + ruta + ", fecha_viaje=" + fecha_viaje + ", hora_viaje=" + hora_viaje + ", asiento=" + asiento + ", precio=" + precio + '}';
     }
     
     
+
 }
