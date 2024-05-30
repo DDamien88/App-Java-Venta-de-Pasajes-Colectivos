@@ -113,7 +113,7 @@ public class RutaData {
             }
             
         } catch (SQLException ex) {
-            Logger.getLogger(RutaData.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Ruta");
         }
         return rutas;
         

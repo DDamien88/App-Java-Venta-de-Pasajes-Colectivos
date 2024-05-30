@@ -17,12 +17,13 @@ public class HorarioData {
     private Connection con = null;
     //private RutaData rd = new MateriaData();
     
-    private HorarioData(){
+    public HorarioData(){
         this.con = (Connection) Conexion.getConexion();
     }
     //crear primero ruta y despues horario
     public void guardarHorario(Horario hor, Ruta ruta){
-        String sql = "INSERT INTO horarios (id_ruta,hora_salida,hora_llegada) VALUES (?,?,?)";
+        String sql = "INSERT INTO horarios (id_ruta,hora_salida,hora_llegada) "
+                + "VALUES (?,?,?)";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -103,27 +104,27 @@ public class HorarioData {
         //Los usuarios deben poder añadir horarios a las rutas, especificando la fecha y hora de
 //salida y llegada.  
     
-    public void guardarHorarioPorFechaYHora(int id_ruta, int id_pasaje){
-        String sql = "INSERT INTO horarios (hora_salida,hora_llegada) VALUES (?,?)"
-                + "WHERE id_ruta=? and id_pasaje/fecha_viaje      JOIN"; 
-        
-
-        
-    }
-    //Los usuarios deben poder visualizar los horarios disponibles para una ruta específica.
-    //Select  ver horarios segun id_ruta
-    public void verHorariosDisponibleds(){
-        String sql = "SELECT horariodisponible???? ";
-        
-    }
-        
-//Los usuarios deben poder buscar horarios por ruta o fecha.
-    //Select horario_llegada, salida segun ruta o fecha(pasaje)
-    public void buscarHorarioPorRutaOFecha(Ruta id_ruta, Pasaje fecha_viaje){
-        String sql = "SELECT hora_salida, hora_llegada FROM horarios WHERE id_ruta = ? "
-                + "OR id_fecha = ?"; 
-        
-    }
+//    public void guardarHorarioPorFechaYHora(int id_ruta, int id_pasaje){
+//        String sql = "INSERT INTO horarios (hora_salida,hora_llegada) VALUES (?,?)"
+//                + "WHERE id_ruta=? and id_pasaje/fecha_viaje      JOIN"; 
+//        
+//
+//        
+//    }
+//    //Los usuarios deben poder visualizar los horarios disponibles para una ruta específica.
+//    //Select  ver horarios segun id_ruta
+//    public void verHorariosDisponibleds(){
+//        String sql = "SELECT horariodisponible???? ";
+//        
+//    }
+//        
+////Los usuarios deben poder buscar horarios por ruta o fecha.
+//    //Select horario_llegada, salida segun ruta o fecha(pasaje)
+//    public void buscarHorarioPorRutaOFecha(Ruta id_ruta, Pasaje fecha_viaje){
+//        String sql = "SELECT hora_salida, hora_llegada FROM horarios WHERE id_ruta = ? "
+//                + "OR id_fecha = ?"; 
+//        
+//    }
    
 
 
