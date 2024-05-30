@@ -13,22 +13,22 @@ import java.time.LocalTime;
 public class Horario {
 
     private int id_horario;
-    private Ruta id_ruta;
+    private Ruta ruta;
     private LocalTime hora_salida;
     private LocalTime hora_llegada;
 
     public Horario() {
     }
 
-    public Horario(int id_horario, Ruta id_ruta, LocalTime hora_salida, LocalTime hora_llegada) {
+    public Horario(int id_horario, Ruta ruta, LocalTime hora_salida, LocalTime hora_llegada) {
         this.id_horario = id_horario;
-        this.id_ruta = id_ruta;
+        this.ruta = ruta;
         this.hora_salida = hora_salida;
         this.hora_llegada = hora_llegada;
     }
 
-    public Horario(Ruta id_ruta, LocalTime hora_salida, LocalTime hora_llegada) {
-        this.id_ruta = id_ruta;
+    public Horario(Ruta ruta, LocalTime hora_salida, LocalTime hora_llegada) {
+        this.ruta = ruta;
         this.hora_salida = hora_salida;
         this.hora_llegada = hora_llegada;
     }
@@ -41,12 +41,12 @@ public class Horario {
         this.id_horario = id_horario;
     }
 
-    public Ruta getId_ruta() {
-        return id_ruta;
+    public Ruta getRuta() {
+        return ruta;
     }
 
-    public void setId_ruta(Ruta id_ruta) {
-        this.id_ruta = id_ruta;
+    public void setRuta(Ruta ruta) {
+        this.ruta = ruta;
     }
 
     public LocalTime getHora_salida() {
@@ -67,7 +67,7 @@ public class Horario {
 
     @Override
     public String toString() {
-        return "Horario{" + "id_horario=" + id_horario + ", id_ruta=" + id_ruta + ", hora_salida=" + hora_salida + ", hora_llegada=" + hora_llegada + '}';
+        return "Horario{" + "id_horario=" + id_horario + ", ruta=" + ruta + ", hora_salida=" + hora_salida + ", hora_llegada=" + hora_llegada + '}';
     }
 
 }
