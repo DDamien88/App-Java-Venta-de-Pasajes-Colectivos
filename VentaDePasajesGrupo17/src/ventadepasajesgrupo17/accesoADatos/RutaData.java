@@ -14,7 +14,8 @@ import ventadepasajesgrupo17.entidades.Ruta;
 
 /**
  * La aplicación debe implementar las operaciones CRUD (Crear, Listar ,
- * Actualizar, Eliminar) Gestión de Rutas: Los usuarios deben poder añadir
+ * Actualizar, Eliminar) 
+ * Gestión de Rutas: Los usuarios deben poder añadir
  * nuevas rutas a la base de datos, especificando el origen y destino de cada
  * ruta. Los usuarios deben poder visualizar la lista de rutas disponibles.
  * mostrar todas las rutas Los usuarios deben poder buscar rutas por origen o
@@ -41,7 +42,7 @@ public class RutaData {
 
             ps.setString(2, ruta.getDestino());
 
-            ps.setTime(3, Time.valueOf(ruta.getDuracion_estimado()));
+            ps.setTime(3, Time.valueOf(ruta.getDuracion_estimada()));
 
             ps.executeUpdate();
 
@@ -58,15 +59,17 @@ public class RutaData {
 
     }
 
-    public void actualizarRuta(String origen, String destino, Time duracion_estimada) {
-        String sql = "UPDATE rutas SET `origen`='?',`destino`='?',`duracion_estimado`='?' WHERE id_ruta=? and id_horario=?";
+    public void actualizarRuta(Ruta ruta) {
+        String sql = " UPDATE rutas SET `origen`= ? ,`destino`= ? ,`duracion_estimada`= ?  WHERE id_ruta= ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setString(1, origen);
-            ps.setString(2, destino);
-            ps.setTime(3, duracion_estimada);
+            
+            ps.setString(1, ruta.getOrigen());
+            ps.setString(2, ruta.getDestino());
+            ps.setTime(3, Time.valueOf(ruta.getDuracion_estimada()));
+            ps.setInt(4, ruta.getId_ruta());
             int filas = ps.executeUpdate();
-            if (filas > 0) {
+            if (filas == 1) {
                 JOptionPane.showMessageDialog(null, "Ruta actualizada");
             }
             ps.close();
@@ -77,15 +80,15 @@ public class RutaData {
 
     }
 
-    public void eliminarRuta(int id_horario, int id_ruta) {
-        String sql = "DELETE FROM rutas WHERE id_horario=? and id_ruta=?";
+    public void eliminarRuta( int id_ruta) {
+        String sql = "DELETE FROM rutas WHERE id_ruta=?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, id_horario);
-            ps.setInt(2, id_ruta);
+            
+            ps.setInt(1, id_ruta);
             int filas = ps.executeUpdate();
             if (filas > 0) {
-                JOptionPane.showMessageDialog(null, "Incripcion borrada");
+                JOptionPane.showMessageDialog(null, "ruta borrada");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -106,7 +109,7 @@ public class RutaData {
                 rut.setId_ruta(rs.getInt("id_ruta"));
                 rut.setOrigen("origen");
                 rut.setDestino(rs.getString("destino"));
-                rut.setDuracion_estimado(rs.getTime("duracion_estimada").toLocalTime());
+                rut.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
                 rutas.add(rut);
             }
 
@@ -129,7 +132,7 @@ public class RutaData {
                 ruta.setId_ruta(rs.getInt("id_ruta"));
                 ruta.setOrigen(rs.getString("origen"));
                 ruta.setDestino(rs.getString("destino"));
-                ruta.setDuracion_estimado(rs.getTime("duracion_estimada").toLocalTime());
+                ruta.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
                 rutas.add(ruta);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el origen");
@@ -154,7 +157,7 @@ public class RutaData {
                 ruta.setId_ruta(rs.getInt("id_ruta"));
                 ruta.setOrigen(rs.getString("origen"));
                 ruta.setDestino(rs.getString("destino"));
-                ruta.setDuracion_estimado(rs.getTime("duracion_estimada").toLocalTime());
+                ruta.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
                 rutas.add(ruta);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el destino");
@@ -179,7 +182,7 @@ public class RutaData {
                 rut.setId_ruta(id);
                 rut.setOrigen(rs.getString("origen"));
                 rut.setDestino(rs.getString("destino"));
-                rut.setDuracion_estimado(rs.getTime("duracion_estimada").toLocalTime());
+                rut.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe la ruta");

@@ -48,12 +48,18 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println(pasajero.getCorreo());
 //            System.out.println(pasajero.getTelefono());
 //        }
-        //Ruta ruta = new Ruta("San Luis", "Villa Mercedes", LocalTime.of(22, 0));
+        Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
+        Ruta ruta2 = new Ruta(3,"Naschel","Concaran",LocalTime.of(15, 0));
         RutaData ru = new RutaData();
-        //ru.guardarRuta(ruta);
+            
+//        ru.guardarRuta(ruta2);
         /*for (Ruta rut : ru.listarRuta()) {
             System.out.println(rut.getDestino());
         }*/
+//        ru.actualizarRuta(ruta);
+//        ru.actualizarRuta(ruta2);
+        ru.eliminarRuta(2);
+      
 
 //        for (Ruta rut : ru.buscarOrigen("La Quiaca")) {
 //            System.out.println(rut);
@@ -62,14 +68,14 @@ public class VentaDePasajesGrupo17 {
             System.out.println(rut);
         }*/
 
-        Ruta rut = ru.buscarRuta(1);
-        //Horario hora = new Horario(ruta, LocalTime.of(22, 15), LocalTime.of(00, 15));
-        HorarioData hr = new HorarioData();
-        //hr.guardarHorario(hora, rut);*/
-        
-        for (Horario hrs : hr.buscarHorariosPorRuta(rut)) {
-            System.out.println("horarios por ruta: " + rut.getId_ruta() + "; " + hrs);
-        }
+//        Ruta rut = ru.buscarRuta(1);
+//        //Horario hora = new Horario(ruta, LocalTime.of(22, 15), LocalTime.of(00, 15));
+//        HorarioData hr = new HorarioData();
+//        //hr.guardarHorario(hora, rut);*/
+//        
+//        for (Horario hrs : hr.buscarHorariosPorRuta(rut)) {
+//            System.out.println("horarios por ruta: " + rut.getId_ruta() + "; " + hrs);
+//        }
     }
 
 }

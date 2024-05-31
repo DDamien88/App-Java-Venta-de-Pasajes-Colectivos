@@ -14,22 +14,22 @@ public class Ruta {
     private int id_ruta;
     private String origen;
     private String destino;
-    private LocalTime duracion_estimado;
+    private LocalTime duracion_estimada;
 
     public Ruta() {
     }
 
-    public Ruta(int id_ruta, String origen, String destino, LocalTime duracion_estimado) {
+    public Ruta(int id_ruta, String origen, String destino, LocalTime duracion_estimada) {
         this.id_ruta = id_ruta;
         this.origen = origen;
         this.destino = destino;
-        this.duracion_estimado = duracion_estimado;
+        this.duracion_estimada = duracion_estimada;
     }
 
-    public Ruta(String origen, String destino, LocalTime duracion_estimado) {
+    public Ruta(String origen, String destino, LocalTime duracion_estimada) {
         this.origen = origen;
         this.destino = destino;
-        this.duracion_estimado = duracion_estimado;
+        this.duracion_estimada = duracion_estimada;
     }
 
     public int getId_ruta() {
@@ -56,17 +56,17 @@ public class Ruta {
         this.destino = destino;
     }
 
-    public LocalTime getDuracion_estimado() {
-        return duracion_estimado;
+    public LocalTime getDuracion_estimada() {
+        return duracion_estimada;
     }
 
-    public void setDuracion_estimado(LocalTime duracion_estimado) {
-        this.duracion_estimado = duracion_estimado;
+    public void setDuracion_estimada(LocalTime duracion_estimada) {
+        this.duracion_estimada = duracion_estimada;
     }
 
     @Override
     public String toString() {
-        return "Ruta{" + "id_ruta=" + id_ruta + ", origen=" + origen + ", destino=" + destino + ", duracion_estimado=" + duracion_estimado + '}';
+        return "Ruta{" + "id_ruta=" + id_ruta + ", origen=" + origen + ", destino=" + destino + ", duracion_estimada=" + duracion_estimada + '}';
     }
     
     
