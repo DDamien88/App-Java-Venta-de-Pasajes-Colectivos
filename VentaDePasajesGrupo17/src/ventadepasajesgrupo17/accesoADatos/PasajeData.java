@@ -18,7 +18,7 @@ public class PasajeData {
 
     //private PasajeroData pasajeroData = new PasajeroData();
     private ColectivoData colectivoData = new ColectivoData();
-    //private RutaData rutaData = new RutaData();
+    
     private Connection con = null;
 
     public PasajeData() {

@@ -19,7 +19,7 @@ public class VentaDePasajesGrupo17 {
     public static void main(String[] args) {
         
         ColectivoData coleData= new ColectivoData();
-        //Colectivo cole= new Colectivo("pha-589", "VW", "2018", 30);
+        Colectivo cole= new Colectivo("pha-589", "VW", "2018", 30);
         
         //coleData.guardarColectivo(cole);
         //coleData.modificarColectivo(cole);
