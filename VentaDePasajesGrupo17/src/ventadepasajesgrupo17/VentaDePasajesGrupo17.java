@@ -55,7 +55,7 @@ public class VentaDePasajesGrupo17 {
         }*/
 //        ru.actualizarRuta(ruta);
 //        ru.actualizarRuta(ruta2);
-        ru.eliminarRuta(2);
+        //ru.eliminarRuta(2);
 
 //        for (Ruta rut : ru.buscarOrigen("La Quiaca")) {
 //            System.out.println(rut);
@@ -72,23 +72,28 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println("horarios por ruta: " + rut.getId_ruta() + "; " + hrs);
 //        }
         ColectivoData coleData = new ColectivoData();
-        //Colectivo cole = new Colectivo("pha-589", "VW", "2018", 30);
-
+        Colectivo cole = new Colectivo("JSA-789", "Mercedes", "2011", 40,true);
+        //coleData.guardarColectivo(cole);
+        //coleData.eliminarColectivo(3);
+        
+        //coleData.eliminarColectivo(3);
         //coleData.guardarColectivo(cole);
         //coleData.modificarColectivo(cole);
         //coleData.eliminarColectivo(2);
-        /*Colectivo buscarCole= coleData.buscarColectivo(1);
+        
+        /*Colectivo buscarCole= coleData.buscarColectivo(5);
           if (buscarCole != null) {
               System.out.println("ID: " + buscarCole.getId_colectivo());
               System.out.println("Matricula: " + buscarCole.getMatricula());
               System.out.println("Marca: " +buscarCole.getMarca());
               System.out.println("Capacidad: " +buscarCole.getCapacidad());
-        }*/
+          }*/
+          
         for (Colectivo colec : coleData.listarColes()) {
 
-            System.out.println("Marca: " + colec.getMarca());
-            System.out.println("Matrícula: " + colec.getMatricula());
-            System.out.println("Capacidad: " + colec.getCapacidad());
+            System.out.println(colec);
+            //System.out.println("Matrícula: " + colec.getMatricula());
+            //System.out.println("Capacidad: " + colec.getCapacidad());
         }
     }
 }
