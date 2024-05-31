@@ -91,6 +91,7 @@ public class ColectivoData {
     }
 
     public Colectivo buscarColectivo(int id) {
+        //Agregar estado
         String sql = "SELECT matricula, marca, modelo, capacidad FROM colectivos WHERE id_colectivo = ? ";
         Colectivo cole = null;
         try {
@@ -118,6 +119,7 @@ public class ColectivoData {
     }
 
     public List<Colectivo> listarColes() {
+        //Cambiar estado
         String sql = "SELECT id_colectivo, matricula, marca, modelo, capacidad, estado FROM colectivos";
         ArrayList<Colectivo> coles = new ArrayList<>();
 
