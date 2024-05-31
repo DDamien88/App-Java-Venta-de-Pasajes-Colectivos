@@ -20,7 +20,7 @@ import ventadepasajesgrupo17.entidades.Colectivo;
  * @author Damián
  */
 public class ColectivoData {
-    
+    //Damián
     private Connection con = null;
 
     public ColectivoData() {
