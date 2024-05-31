@@ -48,21 +48,28 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println(pasajero.getCorreo());
 //            System.out.println(pasajero.getTelefono());
 //        }
-        Ruta ruta = new Ruta("San Luis", "Villa Mercedes", LocalTime.of(22, 0));
+        //Ruta ruta = new Ruta("San Luis", "Villa Mercedes", LocalTime.of(22, 0));
         RutaData ru = new RutaData();
         //ru.guardarRuta(ruta);
         /*for (Ruta rut : ru.listarRuta()) {
             System.out.println(rut.getDestino());
         }*/
 
-        for (Ruta rut : ru.buscarOrigen("San Luis")) {
+//        for (Ruta rut : ru.buscarOrigen("La Quiaca")) {
+//            System.out.println(rut);
+//        }
+        /*for (Ruta rut : ru.buscarDestino("Villa Mercedes")) {
             System.out.println(rut);
-        }
+        }*/
 
-        /*Ruta rut = ru.buscarRuta(1);
-        Horario hora = new Horario(ruta, LocalTime.of(22, 15), LocalTime.of(00, 15));
+        Ruta rut = ru.buscarRuta(1);
+        //Horario hora = new Horario(ruta, LocalTime.of(22, 15), LocalTime.of(00, 15));
         HorarioData hr = new HorarioData();
-        hr.guardarHorario(hora, rut);*/
+        //hr.guardarHorario(hora, rut);*/
+        
+        for (Horario hrs : hr.buscarHorariosPorRuta(rut)) {
+            System.out.println("horarios por ruta: " + rut.getId_ruta() + "; " + hrs);
+        }
     }
 
 }

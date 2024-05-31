@@ -101,7 +101,7 @@ public class RutaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 Ruta rut = new Ruta();
                 rut.setId_ruta(rs.getInt("id_ruta"));
                 rut.setOrigen("origen");
@@ -124,15 +124,16 @@ public class RutaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, origen);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 Ruta ruta = new Ruta();
                 ruta.setId_ruta(rs.getInt("id_ruta"));
                 ruta.setOrigen(rs.getString("origen"));
                 ruta.setDestino(rs.getString("destino"));
                 ruta.setDuracion_estimado(rs.getTime("duracion_estimada").toLocalTime());
                 rutas.add(ruta);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el origen");
             }
-
             ps.close();
 
         } catch (SQLException ex) {
@@ -143,15 +144,20 @@ public class RutaData {
 
     public List<Ruta> buscarDestino(String destino) {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT * FROM rutas WHERE destino=?";
+        String sql = "SELECT * FROM rutas WHERE destino = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, destino);
             ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
+            if (rs.next()) {
                 Ruta ruta = new Ruta();
-                ruta.setDestino(rs.getString(destino));
+                ruta.setId_ruta(rs.getInt("id_ruta"));
+                ruta.setOrigen(rs.getString("origen"));
+                ruta.setDestino(rs.getString("destino"));
+                ruta.setDuracion_estimado(rs.getTime("duracion_estimada").toLocalTime());
                 rutas.add(ruta);
+            } else {
+                JOptionPane.showMessageDialog(null, "No existe el destino");
             }
             ps.close();
         } catch (SQLException ex) {
