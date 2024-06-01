@@ -45,9 +45,9 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println(pasajero.getCorreo());
 //            System.out.println(pasajero.getTelefono());
 //        }
-        Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
-        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0));
-        RutaData ru = new RutaData();
+        /*Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0), true);
+        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0), true);
+        RutaData ru = new RutaData();*/
 
 //        ru.guardarRuta(ruta2);
         /*for (Ruta rut : ru.listarRuta()) {
@@ -55,7 +55,7 @@ public class VentaDePasajesGrupo17 {
         }*/
 //        ru.actualizarRuta(ruta);
 //        ru.actualizarRuta(ruta2);
-        ru.eliminarRuta(2);
+        //ru.eliminarRuta(2);
 
 //        for (Ruta rut : ru.buscarOrigen("La Quiaca")) {
 //            System.out.println(rut);
