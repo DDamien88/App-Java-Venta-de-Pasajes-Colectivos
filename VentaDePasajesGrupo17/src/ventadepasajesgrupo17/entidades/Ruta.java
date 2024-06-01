@@ -11,25 +11,29 @@ import java.time.LocalTime;
  * @author Damián
  */
 public class Ruta {
+
     private int id_ruta;
     private String origen;
     private String destino;
     private LocalTime duracion_estimada;
+    private boolean estado;
 
     public Ruta() {
     }
 
-    public Ruta(int id_ruta, String origen, String destino, LocalTime duracion_estimada) {
+    public Ruta(int id_ruta, String origen, String destino, LocalTime duracion_estimada, boolean estado) {
         this.id_ruta = id_ruta;
         this.origen = origen;
         this.destino = destino;
         this.duracion_estimada = duracion_estimada;
+        this.estado = estado;
     }
 
-    public Ruta(String origen, String destino, LocalTime duracion_estimada) {
+    public Ruta(String origen, String destino, LocalTime duracion_estimada, boolean estado) {
         this.origen = origen;
         this.destino = destino;
         this.duracion_estimada = duracion_estimada;
+        this.estado = estado;
     }
 
     public int getId_ruta() {
@@ -64,13 +68,17 @@ public class Ruta {
         this.duracion_estimada = duracion_estimada;
     }
 
+    public boolean isEstado() {
+        return estado;
+    }
+
+    public void setEstado(boolean estado) {
+        this.estado = estado;
+    }
+
     @Override
     public String toString() {
-        return "Ruta{" + "id_ruta=" + id_ruta + ", origen=" + origen + ", destino=" + destino + ", duracion_estimada=" + duracion_estimada + '}';
+        return "Ruta{" + "id_ruta=" + id_ruta + ", origen=" + origen + ", destino=" + destino + ", duracion_estimada=" + duracion_estimada + ", estado=" + estado + '}';
     }
-    
-    
-    
-    
-    
+
 }
