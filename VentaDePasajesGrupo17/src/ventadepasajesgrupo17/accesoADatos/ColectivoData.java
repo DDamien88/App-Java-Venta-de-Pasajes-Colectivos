@@ -92,7 +92,7 @@ public class ColectivoData {
 
     public Colectivo buscarColectivo(int id) {
         //Agregar estado
-        String sql = "SELECT matricula, marca, modelo, capacidad FROM colectivos WHERE id_colectivo = ? ";
+        String sql = "SELECT matricula, marca, modelo, capacidad FROM colectivos WHERE id_colectivo = ? AND estado = 1 ";
         Colectivo cole = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -120,7 +120,7 @@ public class ColectivoData {
 
     public List<Colectivo> listarColes() {
         //Cambiar estado
-        String sql = "SELECT id_colectivo, matricula, marca, modelo, capacidad, estado FROM colectivos";
+        String sql = "SELECT id_colectivo, matricula, marca, modelo, capacidad, estado FROM colectivos WHERE estado = 1";
         ArrayList<Colectivo> coles = new ArrayList<>();
 
         try {
