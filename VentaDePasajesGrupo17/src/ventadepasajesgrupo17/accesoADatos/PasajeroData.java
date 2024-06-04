@@ -3,8 +3,6 @@ package ventadepasajesgrupo17.accesoADatos;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ventadepasajesgrupo17.entidades.Pasajero;
 
@@ -62,13 +60,13 @@ public class PasajeroData {
         }
     }
     public void eliminarPasajero(int id){
-        String sql = "DELETE FROM pasajeros WHERE id_pasajero = ?";
+        String sql = "UPDATE pasajeros SET estado = 0 WHERE id_pasajero = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             int fila = ps.executeUpdate();
             if(fila > 0){
-            JOptionPane.showMessageDialog(null, "Pasajero eliminado.");
+            JOptionPane.showMessageDialog(null, "Pasajero dado de baja");
             
             }
         } catch (SQLException ex) {
@@ -78,7 +76,7 @@ public class PasajeroData {
         
     }
     public Pasajero buscarPasajero(int id){
-        String sql = "SELECT nombre, apellido, dni, correo, telefono FROM pasajeros WHERE id_pasajero = ?";
+        String sql = "SELECT nombre, apellido, dni, correo, telefono FROM pasajeros WHERE id_pasajero = ? AND estado = 1";
         
         Pasajero pasajero = null;
         try {
@@ -93,6 +91,7 @@ public class PasajeroData {
             pasajero.setDni(rs.getString("dni"));
             pasajero.setCorreo(rs.getString("correo"));
             pasajero.setTelefono(rs.getString("telefono"));
+            pasajero.setEstado(true);
             } else {
             JOptionPane.showMessageDialog(null, "No existe un pasajero con ese ID.");
             }
@@ -106,7 +105,7 @@ public class PasajeroData {
     public List<Pasajero> listarPasajeros(){
     ArrayList<Pasajero> pasajeros = new ArrayList<>();
     
-    String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros";
+    String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros AND estado = 1";
     
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -120,7 +119,7 @@ public class PasajeroData {
             pasajero.setDni(rs.getString("dni"));
             pasajero.setCorreo(rs.getString("correo"));
             pasajero.setTelefono(rs.getString("telefono"));
-            
+            pasajero.setEstado(true);
             pasajeros.add(pasajero);
             }
             ps.close();
@@ -133,7 +132,7 @@ public class PasajeroData {
        
     }
     public Pasajero buscarPasajeroPorDNI(String dni){
-        String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE dni = ?";
+        String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE dni = ? AND estado = 1";
         
         Pasajero pasajero = null;
         try {
@@ -148,6 +147,7 @@ public class PasajeroData {
             pasajero.setDni(rs.getString("dni"));
             pasajero.setCorreo(rs.getString("correo"));
             pasajero.setTelefono(rs.getString("telefono"));
+            pasajero.setEstado(true);
             } else {
             JOptionPane.showMessageDialog(null, "No existe un pasajero con ese dni.");
             }
@@ -160,7 +160,7 @@ public class PasajeroData {
     }
     public List<Pasajero> buscarPasajeroPorNombre(String nombre){
         
-        String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE nombre = ?";
+        String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE nombre = ? AND estado = 1";
         ArrayList<Pasajero> pasajerosXNombre = new ArrayList<>();
 
         
@@ -176,6 +176,7 @@ public class PasajeroData {
             pasajero.setDni(rs.getString("dni"));
             pasajero.setCorreo(rs.getString("correo"));
             pasajero.setTelefono(rs.getString("telefono"));
+            pasajero.setEstado(true);
             
             pasajerosXNombre.add(pasajero);
             } else {
