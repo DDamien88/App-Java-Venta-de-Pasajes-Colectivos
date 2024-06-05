@@ -86,4 +86,22 @@ public class PasajeData {
         return ventas;
 
     }
+
+    public void anularVenta( int idPasajero, int idColectivo, int idRuta) {
+        String sql = "DELETE FROM pasajes WHERE id_pasajero = ? AND id_colectivo = ? AND id_ruta = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            //ps.setInt(1, idPasaje);
+            ps.setInt(1, idPasajero);
+            ps.setInt(2, idColectivo);
+            ps.setInt(3, idRuta);
+            int fila = ps.executeUpdate();
+            if (fila > 0) {
+                JOptionPane.showMessageDialog(null, "Venta borrada exitosamente ");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajes ");
+        }
+    }
 }

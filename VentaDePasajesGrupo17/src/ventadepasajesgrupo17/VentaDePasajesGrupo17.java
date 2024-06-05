@@ -13,6 +13,7 @@ import ventadepasajesgrupo17.accesoADatos.PasajeroData;
 import ventadepasajesgrupo17.accesoADatos.RutaData;
 import ventadepasajesgrupo17.entidades.Colectivo;
 import ventadepasajesgrupo17.entidades.Pasaje;
+import ventadepasajesgrupo17.entidades.Pasajero;
 import ventadepasajesgrupo17.entidades.Ruta;
 
 /**
@@ -25,7 +26,7 @@ public class VentaDePasajesGrupo17 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Pasajero pasa = new Pasajero(1, "Jose Carlos", "Sosa", "49829384", "joseCarlos@gmail.com", "2554628765");
+        Pasajero pasa = new Pasajero(1, "Jose Carlos", "Sosa", "49829384", "joseCarlos@gmail.com", "2554628765", true);
         //Pasajero pasa2 = new Pasajero("Mario", "Gomez", "42357986", "marito@gmail.com", "2664975836");
         PasajeroData p1 = new PasajeroData();
 //       p1.guardarPasajero(pasa2);
@@ -50,8 +51,8 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println(pasajero.getCorreo());
 //            System.out.println(pasajero.getTelefono());
 //        }
-        /*Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
-        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0));*/
+        //Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
+        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0));
         RutaData ru = new RutaData();
 
 //        ru.guardarRuta(ruta2);
@@ -76,7 +77,7 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println("horarios por ruta: " + rut.getId_ruta() + "; " + hrs);
 //        }
         ColectivoData coleData = new ColectivoData();
-        //Colectivo cole = new Colectivo("JSA-789", "Mercedes", "2011", 40,true);
+        Colectivo cole = new Colectivo("JSA-789", "Mercedes", "2011", 40,true);
         //coleData.guardarColectivo(cole);
         //coleData.eliminarColectivo(3);
 
@@ -97,12 +98,14 @@ public class VentaDePasajesGrupo17 {
             //System.out.println("Matrícula: " + colec.getMatricula());
             //System.out.println("Capacidad: " + colec.getCapacidad());
         }*/
-        //Pasaje pasaje = new Pasaje(p1.buscarPasajero(1), coleData.buscarColectivo(6), ru.buscarRuta(1), LocalDate.of(2024, Month.MARCH, 30), LocalTime.of(14, 30), 10, 158.25);
+        Pasaje pasaje = new Pasaje(p1.buscarPasajero(1), coleData.buscarColectivo(6), ru.buscarRuta(1), LocalDate.of(2024, Month.MARCH, 30), LocalTime.of(14, 30), 10, 158.25);
         PasajeData pasData = new PasajeData();
         //pasData.registrarVenta(pasaje);
 
-         for (Pasaje pass : pasData.listarPasajes(1)) {
+         /*for (Pasaje pass : pasData.listarPasajes(1)) {
              System.out.println( pass);
-        }
+        }*/
+         
+         pasData.anularVenta(pasaje.getPasajero().getId_pasajero(), pasaje.getColectivo().getId_colectivo(),  pasaje.getRuta().getId_ruta());
     }
 }
