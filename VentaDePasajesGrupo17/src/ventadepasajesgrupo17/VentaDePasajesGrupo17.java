@@ -97,8 +97,12 @@ public class VentaDePasajesGrupo17 {
             //System.out.println("Matrícula: " + colec.getMatricula());
             //System.out.println("Capacidad: " + colec.getCapacidad());
         }*/
-        Pasaje pasaje = new Pasaje(p1.buscarPasajero(1), coleData.buscarColectivo(6), ru.buscarRuta(1), LocalDate.of(2024, Month.MARCH, 30), LocalTime.of(14, 30), 10, 158.25);
+        //Pasaje pasaje = new Pasaje(p1.buscarPasajero(1), coleData.buscarColectivo(6), ru.buscarRuta(1), LocalDate.of(2024, Month.MARCH, 30), LocalTime.of(14, 30), 10, 158.25);
         PasajeData pasData = new PasajeData();
-        pasData.registrarVenta(pasaje);
+        //pasData.registrarVenta(pasaje);
+
+         for (Pasaje pass : pasData.listarPasajes(1)) {
+             System.out.println( pass);
+        }
     }
 }

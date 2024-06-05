@@ -44,33 +44,34 @@ public class PasajeData {
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 pasaje.setId_pasaje(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Venta registrada!");
+                JOptionPane.showMessageDialog(null, "Venta registrada! " + "\n"
+                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
             }
             ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pasajes");
-            ex.printStackTrace();
         }
     }
 
-    public List<Pasaje> listarPasajes(Pasajero pasajero) {
-        String sql = "SELECT id_pasaje, id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio FROM pasajes WHERE id_pasajero = ?";
+    public List<Pasaje> listarPasajes(int idPasajero) {
+        String sql = "SELECT * FROM pasajes WHERE id_pasajero = ? ";
         ArrayList<Pasaje> ventas = new ArrayList<>();
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, pasajero.getId_pasajero());
+            ps.setInt(1, idPasajero);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Pasaje pasa = new Pasaje();
-//                Pasajero pasaj = ;
-//                Colectivo cole = ;
-//                Ruta ruta = ;
                 pasa.setId_pasaje(rs.getInt("id_pasaje"));
-//                pasaj.setId_pasajero(rs.getInt("id_pasajero"));
-//                cole.setId_colectivo(rs.getInt("id_colectivo"));
-//                ruta.setId_ruta(rs.getInt("id_ruta"));     
+                Pasajero pasajero = pd.buscarPasajero(rs.getInt("id_pasajero"));
+                Colectivo cole = coleData.buscarColectivo(rs.getInt("id_colectivo"));
+                Ruta ruta = rd.buscarRuta(rs.getInt("id_ruta"));
+
+                pasa.setPasajero(pasajero);
+                pasa.setColectivo(cole);
+                pasa.setRuta(ruta);
                 pasa.setFecha_viaje(rs.getDate("fecha_viaje").toLocalDate());
                 pasa.setHora_viaje(rs.getTime("hora_viaje").toLocalTime());
                 pasa.setAsiento(rs.getInt("asiento"));
