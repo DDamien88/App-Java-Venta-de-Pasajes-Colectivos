@@ -18,8 +18,8 @@ public class PasajeroData {
 
     public void guardarPasajero(Pasajero pasajero) {
 
-        String sql = "INSERT INTO `pasajeros`(`nombre`, `apellido`, `dni`, `correo`, `telefono`) "
-                + "VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO pasajeros(nombre, apellido, dni, correo, telefono, estado) "
+                + "VALUES (?, ?, ?, ?, ?,?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, pasajero.getNombre());
@@ -27,6 +27,7 @@ public class PasajeroData {
             ps.setString(3, pasajero.getDni());
             ps.setString(4, pasajero.getCorreo());
             ps.setString(5, pasajero.getTelefono());
+            ps.setBoolean(6, pasajero.isEstado());
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();

@@ -20,7 +20,7 @@ import ventadepasajesgrupo17.entidades.Colectivo;
  * @author Damián
  */
 public class ColectivoData {
-    //Damián
+
     private Connection con = null;
 
     public ColectivoData() {
@@ -28,8 +28,8 @@ public class ColectivoData {
     }
 
     public void guardarColectivo(Colectivo cole) {
-        String sql = "INSERT INTO colectivos (matricula, marca, modelo, capacidad)"
-                + "VALUES(?, ?, ?, ?)";
+        String sql = "INSERT INTO colectivos (matricula, marca, modelo, capacidad, estado)"
+                + "VALUES(?, ?, ?, ?, ?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -38,7 +38,8 @@ public class ColectivoData {
             ps.setString(2, cole.getMarca());
             ps.setString(3, cole.getModelo());
             ps.setInt(4, cole.getCapacidad());
-           
+            ps.setBoolean(5, cole.isEstado());
+
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -52,7 +53,7 @@ public class ColectivoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Colectivo");
         }
     }
-    
+
     public void modificarColectivo(Colectivo cole) {
         String sql = "UPDATE colectivos SET matricula = ?, marca = ?, modelo = ?, capacidad = ? "
                 + "WHERE id_colectivo = ?";
@@ -71,9 +72,9 @@ public class ColectivoData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla colectivo");
         }
     }
-    
+
     public void eliminarColectivo(int id) {
-        String sql = "DELETE FROM colectivos WHERE id_colectivo = ?";
+        String sql = "UPDATE colectivos SET estado = 0  WHERE id_colectivo = ?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -87,9 +88,10 @@ public class ColectivoData {
         }
 
     }
-    
-     public Colectivo buscarColectivo(int id) {
-        String sql = "SELECT matricula, marca, modelo, capacidad FROM colectivos WHERE id_colectivo = ? ";
+
+    public Colectivo buscarColectivo(int id) {
+        //Agregar estado
+        String sql = "SELECT matricula, marca, modelo, capacidad FROM colectivos WHERE id_colectivo = ? AND estado = 1 ";
         Colectivo cole = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -102,7 +104,7 @@ public class ColectivoData {
                 cole.setMarca(rs.getString("marca"));
                 cole.setModelo(rs.getString("modelo"));
                 cole.setCapacidad(rs.getInt("capacidad"));
-               
+
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Colectivo");
             }
@@ -112,9 +114,10 @@ public class ColectivoData {
         }
         return cole;
     }
-     
-      public List<Colectivo> listarColes() {
-        String sql = "SELECT id_colectivo, matricula, marca, modelo, capacidad FROM colectivos"; 
+
+    public List<Colectivo> listarColes() {
+        //Cambiar estado
+        String sql = "SELECT id_colectivo, matricula, marca, modelo, capacidad, estado FROM colectivos WHERE estado = 1";
         ArrayList<Colectivo> coles = new ArrayList<>();
 
         try {
@@ -127,7 +130,7 @@ public class ColectivoData {
                 cole.setMarca(rs.getString("marca"));
                 cole.setModelo(rs.getString("modelo"));
                 cole.setCapacidad(rs.getInt("capacidad"));
-                
+                cole.setEstado(rs.getBoolean("estado"));
 
                 coles.add(cole);
             }

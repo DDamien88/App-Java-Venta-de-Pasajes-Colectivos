@@ -16,40 +16,36 @@ import ventadepasajesgrupo17.entidades.Ruta;
 
 public class PasajeData {
 
-    //private PasajeroData pasajeroData = new PasajeroData();
-    private ColectivoData colectivoData = new ColectivoData();
-    
+    private ColectivoData coleData = new ColectivoData();
+    private PasajeroData pd = new PasajeroData();
+    private RutaData rd = new RutaData();
+
     private Connection con = null;
 
     public PasajeData() {
         con = Conexion.getConexion();
     }
 
-    public void registrarVenta(Pasaje pasaje, Ruta ruta, Horario hora, Pasajero pasajero) {
-        Colectivo cole = new Colectivo();
-        String sql = "INSERT INTO pasajes (id_colectivo, fecha_viaje, hora_viaje, asiento, precio)"
-                + "VALUES(?, ?, ?, ?, ?) WHERE id_ruta = ? AND id_horario= ?  AND id_pasajero= '";
+    public void registrarVenta(Pasaje pasaje) {
+        String sql = "INSERT INTO pasajes (id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio) "
+                + " VALUES(?, ?, ?, ?, ?, ? ,?) ";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
-            ps.setInt(1, cole.getId_colectivo());
-            ps.setDate(2, Date.valueOf(pasaje.getFecha_viaje()));
-            ps.setTime(3, Time.valueOf(pasaje.getHora_viaje()));
-            ps.setInt(4, pasaje.getAsiento());
-            ps.setDouble(5, pasaje.getPrecio());
-            ps.setInt(6, ruta.getId_ruta());
-            ps.setInt(7, hora.getId_horario());
-            ps.setInt(8, pasajero.getId_pasajero());
+            ps.setInt(1, pasaje.getPasajero().getId_pasajero());
+            ps.setInt(2, pasaje.getColectivo().getId_colectivo());
+            ps.setInt(3, pasaje.getRuta().getId_ruta());
+            ps.setDate(4, Date.valueOf(pasaje.getFecha_viaje()));
+            ps.setTime(5, Time.valueOf(pasaje.getHora_viaje()));
+            ps.setInt(6, pasaje.getAsiento());
+            ps.setDouble(7, pasaje.getPrecio());
             ps.executeUpdate();
-
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 pasaje.setId_pasaje(rs.getInt(1));
-//                pasajero.setId_pasajero(rs.getInt(1));
-//                cole.setId_colectivo(1);
-//                ruta.setId_ruta(rs.getInt(1));
-                JOptionPane.showMessageDialog(null, "Venta registrada!");
+                JOptionPane.showMessageDialog(null, "Venta registrada! " + "\n"
+                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
             }
             ps.close();
 
@@ -58,28 +54,27 @@ public class PasajeData {
         }
     }
 
-    public List<Pasaje> listarPasajes(Pasajero pasajero) {
-        String sql = "SELECT id_pasaje, id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio FROM pasajes WHERE id_pasajero = ?";
+    public List<Pasaje> listarPasajes(int idPasajero) {
+        String sql = "SELECT * FROM pasajes WHERE id_pasajero = ? ";
         ArrayList<Pasaje> ventas = new ArrayList<>();
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, pasajero.getId_pasajero());
+            ps.setInt(1, idPasajero);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Pasaje pasa = new Pasaje();
-//                Pasajero pasaj = ;
-//                Colectivo cole = ;
-//                Ruta ruta = ;
                 pasa.setId_pasaje(rs.getInt("id_pasaje"));
-//                pasaj.setId_pasajero(rs.getInt("id_pasajero"));
-//                cole.setId_colectivo(rs.getInt("id_colectivo"));
-//                ruta.setId_ruta(rs.getInt("id_ruta"));     
+                Pasajero pasajero = pd.buscarPasajero(rs.getInt("id_pasajero"));
+                Colectivo cole = coleData.buscarColectivo(rs.getInt("id_colectivo"));
+                Ruta ruta = rd.buscarRuta(rs.getInt("id_ruta"));
+                pasa.setPasajero(pasajero);
+                pasa.setColectivo(cole);
+                pasa.setRuta(ruta);
                 pasa.setFecha_viaje(rs.getDate("fecha_viaje").toLocalDate());
                 pasa.setHora_viaje(rs.getTime("hora_viaje").toLocalTime());
                 pasa.setAsiento(rs.getInt("asiento"));
                 pasa.setPrecio(rs.getDouble("precio"));
-
                 ventas.add(pasa);
             }
             ps.close();
@@ -88,5 +83,23 @@ public class PasajeData {
         }
         return ventas;
 
+    }
+
+    public void anularVenta(int idPasajero, int idColectivo, int idRuta) {
+        String sql = "DELETE FROM pasajes WHERE id_pasajero = ? AND id_colectivo = ? AND id_ruta = ? ";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            //ps.setInt(1, idPasaje);
+            ps.setInt(1, idPasajero);
+            ps.setInt(2, idColectivo);
+            ps.setInt(3, idRuta);
+            int fila = ps.executeUpdate();
+            if (fila > 0) {
+                JOptionPane.showMessageDialog(null, "Venta borrada exitosamente ");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajes ");
+        }
     }
 }
