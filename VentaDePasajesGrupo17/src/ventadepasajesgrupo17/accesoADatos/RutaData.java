@@ -33,7 +33,7 @@ public class RutaData {
     }
 
     public void guardarRuta(Ruta ruta) {
-        String sql = "INSERT INTO rutas(origen, destino, duracion_estimada) VALUES (?,?,?)";
+        String sql = "INSERT INTO rutas(origen, destino, duracion_estimada,estado) VALUES (?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -43,7 +43,9 @@ public class RutaData {
             ps.setString(2, ruta.getDestino());
 
             ps.setTime(3, Time.valueOf(ruta.getDuracion_estimada()));
-
+            
+            ps.setBoolean(4, ruta.isEstado());
+            
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -81,7 +83,8 @@ public class RutaData {
     }
 
     public void eliminarRuta( int id_ruta) {
-        String sql = "DELETE FROM rutas WHERE id_ruta=?";
+        
+        String sql = "UPDATE rutas SET estado = 0 WHERE id_rutas = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             
@@ -99,8 +102,7 @@ public class RutaData {
 
     public List<Ruta> listarRuta() {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT * FROM rutas";
-
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1" ;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -110,6 +112,7 @@ public class RutaData {
                 rut.setOrigen("origen");
                 rut.setDestino(rs.getString("destino"));
                 rut.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
+                rut.setEstado(true);
                 rutas.add(rut);
             }
 
@@ -122,7 +125,8 @@ public class RutaData {
 
     public List<Ruta> buscarOrigen(String origen) {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT * FROM rutas WHERE origen = ? ";
+        
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1" ;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, origen);
@@ -133,6 +137,7 @@ public class RutaData {
                 ruta.setOrigen(rs.getString("origen"));
                 ruta.setDestino(rs.getString("destino"));
                 ruta.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
+                ruta.setEstado(true);
                 rutas.add(ruta);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el origen");
@@ -147,7 +152,8 @@ public class RutaData {
 
     public List<Ruta> buscarDestino(String destino) {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT * FROM rutas WHERE destino = ?";
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1" ;
+
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, destino);
@@ -158,6 +164,7 @@ public class RutaData {
                 ruta.setOrigen(rs.getString("origen"));
                 ruta.setDestino(rs.getString("destino"));
                 ruta.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
+                ruta.setEstado(true);
                 rutas.add(ruta);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el destino");
@@ -171,7 +178,8 @@ public class RutaData {
 
     public Ruta buscarRuta(int id) {
 
-        String sql = "SELECT origen, destino, duracion_estimada FROM rutas WHERE id_ruta = ? ";
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1 AND id_ruta= ?" ;
+
         Ruta rut = null;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -183,7 +191,7 @@ public class RutaData {
                 rut.setOrigen(rs.getString("origen"));
                 rut.setDestino(rs.getString("destino"));
                 rut.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
-
+                rut.setEstado(true);
             } else {
                 JOptionPane.showMessageDialog(null, "No existe la ruta");
             }
