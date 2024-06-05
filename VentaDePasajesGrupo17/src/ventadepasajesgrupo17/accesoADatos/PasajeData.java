@@ -68,7 +68,6 @@ public class PasajeData {
                 Pasajero pasajero = pd.buscarPasajero(rs.getInt("id_pasajero"));
                 Colectivo cole = coleData.buscarColectivo(rs.getInt("id_colectivo"));
                 Ruta ruta = rd.buscarRuta(rs.getInt("id_ruta"));
-
                 pasa.setPasajero(pasajero);
                 pasa.setColectivo(cole);
                 pasa.setRuta(ruta);
@@ -76,7 +75,6 @@ public class PasajeData {
                 pasa.setHora_viaje(rs.getTime("hora_viaje").toLocalTime());
                 pasa.setAsiento(rs.getInt("asiento"));
                 pasa.setPrecio(rs.getDouble("precio"));
-
                 ventas.add(pasa);
             }
             ps.close();
@@ -87,7 +85,7 @@ public class PasajeData {
 
     }
 
-    public void anularVenta( int idPasajero, int idColectivo, int idRuta) {
+    public void anularVenta(int idPasajero, int idColectivo, int idRuta) {
         String sql = "DELETE FROM pasajes WHERE id_pasajero = ? AND id_colectivo = ? AND id_ruta = ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
