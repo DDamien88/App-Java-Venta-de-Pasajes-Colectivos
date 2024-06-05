@@ -21,7 +21,6 @@ import ventadepasajesgrupo17.entidades.Colectivo;
  */
 public class ColectivoData {
 
-    //Damián metió cambios...ahre
     private Connection con = null;
 
     public ColectivoData() {
@@ -105,8 +104,6 @@ public class ColectivoData {
                 cole.setMarca(rs.getString("marca"));
                 cole.setModelo(rs.getString("modelo"));
                 cole.setCapacidad(rs.getInt("capacidad"));
-                
-               
 
             } else {
                 JOptionPane.showMessageDialog(null, "No existe el Colectivo");
