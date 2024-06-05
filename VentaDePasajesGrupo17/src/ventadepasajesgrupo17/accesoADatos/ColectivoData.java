@@ -21,7 +21,7 @@ import ventadepasajesgrupo17.entidades.Colectivo;
  */
 public class ColectivoData {
 
-    //Damián
+    //Damián metió cambios...ahre
     private Connection con = null;
 
     public ColectivoData() {
