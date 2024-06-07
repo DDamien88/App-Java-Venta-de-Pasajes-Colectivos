@@ -13,7 +13,7 @@ import java.time.LocalTime;
 public class Horario {
 
     private int id_horario;
-    private Ruta ruta;
+    private Ruta ruta;// es una asociacion 
     private LocalTime hora_salida;
     private LocalTime hora_llegada;
 

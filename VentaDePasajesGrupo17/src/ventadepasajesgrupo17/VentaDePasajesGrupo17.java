@@ -45,25 +45,33 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println(pasajero.getCorreo());
 //            System.out.println(pasajero.getTelefono());
 //        }
-        Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
-        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0));
+        Ruta ruta=new Ruta(1, "Tilisarao", " Mercedes", LocalTime.of(22, 0), true);
+        Ruta ruta2 = new Ruta(2, "Naschel", "Concaran", LocalTime.of(15, 0),true);
         RutaData ru = new RutaData();
 
+//        ru.guardarRuta(ruta);
+//        for (Ruta rut : ru.listarRuta()) {
+//            System.out.println(rut.getDestino());
+//        }
+//        
 //        ru.guardarRuta(ruta2);
-        /*for (Ruta rut : ru.listarRuta()) {
-            System.out.println(rut.getDestino());
-        }*/
-//        ru.actualizarRuta(ruta);
-//        ru.actualizarRuta(ruta2);
+//        for (Ruta rut : ru.listarRuta()) {
+//            System.out.println(rut.getDestino());
+//        }
+        ru.actualizarRuta(ruta);
+        ru.actualizarRuta(ruta2);
         ru.eliminarRuta(2);
 
-//        for (Ruta rut : ru.buscarOrigen("La Quiaca")) {
-//            System.out.println(rut);
-//        }
-        /*for (Ruta rut : ru.buscarDestino("Villa Mercedes")) {
+        
+        for (Ruta rut : ru.buscarOrigen("Capital")){
             System.out.println(rut);
-        }*/
-//        Ruta rut = ru.buscarRuta(1);
+        }
+        for (Ruta rut : ru.buscarDestino("Villa Mercedes")) {
+            System.out.println(rut);
+        }
+        Ruta rut = ru.buscarRuta(1);
+        
+        
 //        //Horario hora = new Horario(ruta, LocalTime.of(22, 15), LocalTime.of(00, 15));
 //        HorarioData hr = new HorarioData();
 //        //hr.guardarHorario(hora, rut);*/
