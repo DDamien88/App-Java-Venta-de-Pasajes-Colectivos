@@ -8,6 +8,12 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import ventadepasajesgrupo17.entidades.Pasajero;
 
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JOptionPane;
+import ventadepasajesgrupo17.entidades.Pasajero;
+
 public class PasajeroData {
 
     private Connection con = null;
@@ -18,8 +24,8 @@ public class PasajeroData {
 
     public void guardarPasajero(Pasajero pasajero) {
 
-        String sql = "INSERT INTO pasajeros(nombre, apellido, dni, correo, telefono, estado) "
-                + "VALUES (?, ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO pasajeros (nombre, apellido, dni, correo, telefono, estado) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, pasajero.getNombre());
@@ -65,7 +71,7 @@ public class PasajeroData {
     }
 
     public void eliminarPasajero(int id) {
-        String sql = "UPDATE pasajeros SET estado = 0 WHERE id_pasajero = ?";
+        String sql = "UPDATE pasajeros SET estado = 0 WHERE id_pasajero = ? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
@@ -170,12 +176,14 @@ public class PasajeroData {
 
         String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE nombre = ? AND estado = 1";
         ArrayList<Pasajero> pasajerosXNombre = new ArrayList<>();
+        int cont = 0;
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, nombre);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+
+            while (rs.next()) {
                 Pasajero pasajero = new Pasajero();
                 pasajero.setId_pasajero(rs.getInt("id_pasajero"));
                 pasajero.setNombre(rs.getString("nombre"));
@@ -184,12 +192,13 @@ public class PasajeroData {
                 pasajero.setCorreo(rs.getString("correo"));
                 pasajero.setTelefono(rs.getString("telefono"));
                 pasajero.setEstado(true);
-
                 pasajerosXNombre.add(pasajero);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existen pasajeros con ese nombre.");
+                cont++;
             }
             ps.close();
+            if (cont == 0) {
+                JOptionPane.showMessageDialog(null, "No se encontraron pasajeros con ese nombre");
+            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajero");
         }
@@ -201,12 +210,14 @@ public class PasajeroData {
 
         String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE apellido = ? AND estado = 1";
         ArrayList<Pasajero> pasajerosXApellido = new ArrayList<>();
+        int cont = 0;
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, apellido);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+
+            while (rs.next()) {
                 Pasajero pasajero = new Pasajero();
                 pasajero.setId_pasajero(rs.getInt("id_pasajero"));
                 pasajero.setNombre(rs.getString("nombre"));
@@ -215,9 +226,10 @@ public class PasajeroData {
                 pasajero.setCorreo(rs.getString("correo"));
                 pasajero.setTelefono(rs.getString("telefono"));
                 pasajero.setEstado(true);
-
                 pasajerosXApellido.add(pasajero);
-            } else {
+                cont++;
+            }
+            if (cont == 0) {
                 JOptionPane.showMessageDialog(null, "No existen pasajeros con ese apellido.");
             }
             ps.close();

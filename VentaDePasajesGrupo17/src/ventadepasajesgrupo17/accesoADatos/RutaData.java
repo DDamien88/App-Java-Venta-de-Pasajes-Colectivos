@@ -14,8 +14,7 @@ import ventadepasajesgrupo17.entidades.Ruta;
 
 /**
  * La aplicación debe implementar las operaciones CRUD (Crear, Listar ,
- * Actualizar, Eliminar) 
- * Gestión de Rutas: Los usuarios deben poder añadir
+ * Actualizar, Eliminar) Gestión de Rutas: Los usuarios deben poder añadir
  * nuevas rutas a la base de datos, especificando el origen y destino de cada
  * ruta. Los usuarios deben poder visualizar la lista de rutas disponibles.
  * mostrar todas las rutas Los usuarios deben poder buscar rutas por origen o
@@ -43,9 +42,9 @@ public class RutaData {
             ps.setString(2, ruta.getDestino());
 
             ps.setTime(3, Time.valueOf(ruta.getDuracion_estimada()));
-            
+
             ps.setBoolean(4, ruta.isEstado());
-            
+
             ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
@@ -65,7 +64,7 @@ public class RutaData {
         String sql = " UPDATE rutas SET `origen`= ? ,`destino`= ? ,`duracion_estimada`= ?  WHERE id_ruta= ? ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            
+
             ps.setString(1, ruta.getOrigen());
             ps.setString(2, ruta.getDestino());
             ps.setTime(3, Time.valueOf(ruta.getDuracion_estimada()));
@@ -82,12 +81,12 @@ public class RutaData {
 
     }
 
-    public void eliminarRuta( int id_ruta) {
-        
+    public void eliminarRuta(int id_ruta) {
+
         String sql = "UPDATE rutas SET estado = 0 WHERE id_rutas = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            
+
             ps.setInt(1, id_ruta);
             int filas = ps.executeUpdate();
             if (filas > 0) {
@@ -102,7 +101,7 @@ public class RutaData {
 
     public List<Ruta> listarRuta() {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1" ;
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
@@ -125,8 +124,8 @@ public class RutaData {
 
     public List<Ruta> buscarOrigen(String origen) {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        
-        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1" ;
+
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, origen);
@@ -152,7 +151,7 @@ public class RutaData {
 
     public List<Ruta> buscarDestino(String destino) {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1" ;
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -178,7 +177,7 @@ public class RutaData {
 
     public Ruta buscarRuta(int id) {
 
-        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1 AND id_ruta= ?" ;
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1 AND id_ruta= ?";
 
         Ruta rut = null;
         try {
