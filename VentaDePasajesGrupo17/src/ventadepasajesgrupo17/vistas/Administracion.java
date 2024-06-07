@@ -7,7 +7,7 @@ public class Administracion extends javax.swing.JFrame {
     public Administracion() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setSize(800, 600);
+        this.setSize(900, 700);
     }
 
     /**
@@ -111,6 +111,11 @@ public class Administracion extends javax.swing.JFrame {
         jmGestionVentas.add(jmAgregarVenta);
 
         jmGestionVenta.setText("Gestion Pasaje");
+        jmGestionVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmGestionVentaActionPerformed(evt);
+            }
+        });
         jmGestionVentas.add(jmGestionVenta);
 
         jMenuBar1.add(jmGestionVentas);
@@ -166,6 +171,14 @@ public class Administracion extends javax.swing.JFrame {
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
        System.exit(0);
     }//GEN-LAST:event_jmSalirActionPerformed
+
+    private void jmGestionVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionVentaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        historialVentaPasajes historial = new historialVentaPasajes();
+        historial.setVisible(true);
+        escritorio.add(historial);
+    }//GEN-LAST:event_jmGestionVentaActionPerformed
 
     /**
      * @param args the command line arguments
