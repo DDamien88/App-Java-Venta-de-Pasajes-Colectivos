@@ -85,6 +85,37 @@ public class PasajeData {
 
     }
 
+    public List<Pasaje> listarPasajesPorRuta(int idRuta) {
+        String sql = "SELECT id_pasaje, id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio FROM pasajes WHERE id_ruta = ? ";
+        ArrayList<Pasaje> listaPasaje = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idRuta);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Pasaje pasa = new Pasaje();
+                pasa.setId_pasaje(rs.getInt("id_pasaje"));
+                Pasajero pasajero = pd.buscarPasajero(rs.getInt("id_pasajero"));
+                Colectivo cole = coleData.buscarColectivo(rs.getInt("id_colectivo"));
+                Ruta ruta = rd.buscarRuta(rs.getInt("id_ruta"));
+                pasa.setPasajero(pasajero);
+                pasa.setColectivo(cole);
+                pasa.setRuta(ruta);
+                pasa.setFecha_viaje(rs.getDate("fecha_viaje").toLocalDate());
+                pasa.setHora_viaje(rs.getTime("hora_viaje").toLocalTime());
+                pasa.setAsiento(rs.getInt("asiento"));
+                pasa.setPrecio(rs.getDouble("precio"));
+                listaPasaje.add(pasa);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pasajes");
+        }
+        return listaPasaje;
+
+    }
+
     public void anularVenta(int idPasajero, int idColectivo, int idRuta) {
         String sql = "DELETE FROM pasajes WHERE id_pasajero = ? AND id_colectivo = ? AND id_ruta = ? ";
         try {
