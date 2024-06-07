@@ -5,9 +5,12 @@
 package ventadepasajesgrupo17;
 
 import java.time.LocalTime;
+import java.util.List;
 import ventadepasajesgrupo17.accesoADatos.ColectivoData;
+import ventadepasajesgrupo17.accesoADatos.HorarioData;
 import ventadepasajesgrupo17.accesoADatos.RutaData;
 import ventadepasajesgrupo17.entidades.Colectivo;
+import ventadepasajesgrupo17.entidades.Horario;
 import ventadepasajesgrupo17.entidades.Ruta;
 
 /**
@@ -45,9 +48,9 @@ public class VentaDePasajesGrupo17 {
 //            System.out.println(pasajero.getCorreo());
 //            System.out.println(pasajero.getTelefono());
 //        }
-        Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
-        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0));
-        RutaData ru = new RutaData();
+//        Ruta ruta = new Ruta("Tilisarao", "Villa Mercedes", LocalTime.of(22, 0));
+//        Ruta ruta2 = new Ruta(3, "Naschel", "Concaran", LocalTime.of(15, 0));
+//        RutaData ru = new RutaData();
 
 //        ru.guardarRuta(ruta2);
         /*for (Ruta rut : ru.listarRuta()) {
@@ -55,7 +58,7 @@ public class VentaDePasajesGrupo17 {
         }*/
 //        ru.actualizarRuta(ruta);
 //        ru.actualizarRuta(ruta2);
-        ru.eliminarRuta(2);
+//        ru.eliminarRuta(2);
 
 //        for (Ruta rut : ru.buscarOrigen("La Quiaca")) {
 //            System.out.println(rut);
@@ -71,7 +74,7 @@ public class VentaDePasajesGrupo17 {
 //        for (Horario hrs : hr.buscarHorariosPorRuta(rut)) {
 //            System.out.println("horarios por ruta: " + rut.getId_ruta() + "; " + hrs);
 //        }
-        ColectivoData coleData = new ColectivoData();
+ //       ColectivoData coleData = new ColectivoData();
         //Colectivo cole = new Colectivo("pha-589", "VW", "2018", 30);
 
         //coleData.guardarColectivo(cole);
@@ -84,11 +87,57 @@ public class VentaDePasajesGrupo17 {
               System.out.println("Marca: " +buscarCole.getMarca());
               System.out.println("Capacidad: " +buscarCole.getCapacidad());
         }*/
-        for (Colectivo colec : coleData.listarColes()) {
+//        for (Colectivo colec : coleData.listarColes()) {
+//
+//            System.out.println("Marca: " + colec.getMarca());
+//            System.out.println("Matrícula: " + colec.getMatricula());
+//            System.out.println("Capacidad: " + colec.getCapacidad());
+//        }
 
-            System.out.println("Marca: " + colec.getMarca());
-            System.out.println("Matrícula: " + colec.getMatricula());
-            System.out.println("Capacidad: " + colec.getCapacidad());
-        }
+
+        RutaData rutad = new RutaData();
+        HorarioData horad = new HorarioData();
+        Ruta ruta1 = rutad.buscarRuta(1);
+//        Ruta ruta2 = rutad.buscarRuta(3);
+        
+        //agregar horario
+        Horario hora = new Horario(ruta1, LocalTime.of(02, 10), LocalTime.of(03, 10), true);
+//        horad.guardarHorario(hora);
+
+        //actualizar horario
+//        Horario hactualizada = new Horario(5, ruta2, LocalTime.of(5, 10), LocalTime.of(5, 50), true);
+//        horad.actualizarHorario(hactualizada, ruta2);
+
+        //eliminar horario
+//        horad.eliminarHorario(8);
+
+        //ver horarios disponibles
+//            for (Horario h : horad.verHorariosDisponible(hora)) {
+//                System.out.println("Horario disponible:");
+//                System.out.println("Hora de salida: " + h.getHora_salida());
+//                System.out.println("Hora de llegada: " + h.getHora_llegada());
+//            }
+//        
+            
+        //Buscar horarios por ruta
+//            for (Horario hor : horad.buscarHorariosPorRuta(hora)){
+//                System.out.println("ID Horario: " + hor.getId_horario());
+//                System.out.println("Hora salida: " + hor.getHora_salida());
+//                System.out.println("Hora llegada: " + hor.getHora_llegada());
+//            }
+        
+        //Buscar horarios por hora de salida
+        List<Horario> horariosalida = horad.buscarHorariosPorHoraDeSalida(LocalTime.of(2, 10));
+        if (horariosalida != null) {
+            for (Horario hor : horariosalida) {
+                System.out.println("ID Horario: " + hor.getId_horario());
+                System.out.println("Hora salida: " + hor.getHora_salida());
+                System.out.println("Hora llegada: " + hor.getHora_llegada());
+            }
+        }       
+        
+
     }
 }
+
+
