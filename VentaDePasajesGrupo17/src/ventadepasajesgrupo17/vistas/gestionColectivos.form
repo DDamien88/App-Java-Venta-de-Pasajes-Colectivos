@@ -217,6 +217,9 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Eliminar"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEliminarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnSalir">
           <Properties>
@@ -243,6 +246,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jrEstadoCole">
+          <Properties>
+            <Property name="selected" type="boolean" value="true"/>
+          </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jrEstadoColeActionPerformed"/>
           </Events>

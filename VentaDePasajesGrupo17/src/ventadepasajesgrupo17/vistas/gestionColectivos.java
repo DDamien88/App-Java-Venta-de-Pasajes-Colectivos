@@ -83,6 +83,11 @@ public class gestionColectivos extends javax.swing.JInternalFrame {
         });
 
         btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +106,7 @@ public class gestionColectivos extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI Black", 3, 24)); // NOI18N
         jLabel7.setText("Gestión de Colectivos");
 
+        jrEstadoCole.setSelected(true);
         jrEstadoCole.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrEstadoColeActionPerformed(evt);
@@ -267,7 +273,9 @@ public class gestionColectivos extends javax.swing.JInternalFrame {
                 cole.setMarca(marca);
                 cole.setModelo(modelo);
                 cole.setCapacidad(capacidad);
-                coleData.guardarColectivo(cole);
+                //cole.isEstado(jrEstadoCole.isSelected());
+                coleData.modificarColectivo(cole);
+                JOptionPane.showMessageDialog(null, "Colectivo modificado");
             }
 
         } catch (NumberFormatException ex) {
@@ -296,6 +304,16 @@ public class gestionColectivos extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
         }
     }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+         if (cole != null) {
+            coleData.eliminarColectivo(cole.getId_colectivo());
+            cole = null;
+            limpiar();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay Colectivo seleccionado");
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
