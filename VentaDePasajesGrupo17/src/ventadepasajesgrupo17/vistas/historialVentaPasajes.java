@@ -5,7 +5,9 @@
 package ventadepasajesgrupo17.vistas;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -40,9 +42,11 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
     private RutaData rData;
     private DefaultTableModel modelo;
     private DefaultTableModel modelo2;
+    private DefaultTableModel modelo3;
 
     private Ruta ruta;
     private Pasaje pasaje;
+    private Horario horarios;
 
     public historialVentaPasajes() {
         initComponents();
@@ -57,8 +61,10 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         listaRutas = (ArrayList<Ruta>) rData.listarRuta();
         modelo = new DefaultTableModel();
         modelo2 = new DefaultTableModel();
+        modelo3 = new DefaultTableModel();
         armarCabeceraTabla();
         armarCabeceraTabla2();
+        armarCabeceraTabla3();
     }
 
     private void armarCabeceraTabla() {
@@ -86,6 +92,18 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         jTableBusquedaidPasajero.setModel(modelo2);
     }
 
+    private void armarCabeceraTabla3() {
+        ArrayList<Object> filaCabecera3 = new ArrayList<>();
+        filaCabecera3.add("Código Horario");
+        filaCabecera3.add("Hora de salida");
+        filaCabecera3.add("Fecha");
+        filaCabecera3.add("Colectivo");
+        for (Object iter : filaCabecera3) {
+            modelo3.addColumn(iter);
+        }
+        jTablebusquedaHora.setModel(modelo3);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -100,7 +118,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        jTablebusquedaHora = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTableBusquedaidPasajero = new javax.swing.JTable();
         jLabel6 = new javax.swing.JLabel();
@@ -109,6 +127,9 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jtcodigoPasajero = new javax.swing.JTextField();
         btnBuscarPasajero = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jtFindHora = new javax.swing.JTextField();
+        btnBuscarPorHora = new javax.swing.JButton();
 
         setClosable(true);
         setIconifiable(true);
@@ -150,7 +171,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
             }
         });
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        jTablebusquedaHora.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -161,7 +182,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(jTablebusquedaHora);
 
         jTableBusquedaidPasajero.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -194,6 +215,15 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel8.setText("Hora del viaje:");
+
+        btnBuscarPorHora.setText("Buscar");
+        btnBuscarPorHora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarPorHoraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -201,7 +231,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(17, 17, 17))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
@@ -209,7 +239,9 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(226, 226, 226))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(129, 129, 129))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -240,21 +272,28 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                         .addComponent(jtcodigoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(btnBuscarRuta, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(219, 219, 219)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(189, 189, 189)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtFindHora, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnBuscarPorHora)))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel4))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(jtcodigoRuta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBuscarRuta)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel8)
+                    .addComponent(jtFindHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBuscarPorHora))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +318,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(16, Short.MAX_VALUE))))
+                        .addContainerGap(18, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -317,7 +356,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnBuscarRutaActionPerformed
 
     private void btnBuscarPasajeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPasajeroActionPerformed
-        borrarFilaTabla();
+        borrarFilaTabla2();
         try {
             Integer codigo2 = Integer.parseInt(jtcodigoPasajero.getText());
             List<Pasaje> listaP = pasajeData.listarPasajes(codigo2);
@@ -329,9 +368,23 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnBuscarPasajeroActionPerformed
 
+    private void btnBuscarPorHoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarPorHoraActionPerformed
+        borrarFilaTabla3();
+        try {
+            LocalTime codigo3 = LocalTime.parse(jtFindHora.getText());
+            List<Pasaje> listaH = pasajeData.listarPasajesPorHorario(codigo3);
+            for (Pasaje pas : listaH) {
+                modelo3.addRow(new Object[]{pas.getId_pasaje(), pas.getHora_viaje(), pas.getFecha_viaje() , pas.getColectivo().getMatricula()});
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
+        }
+    }//GEN-LAST:event_btnBuscarPorHoraActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscarPasajero;
+    private javax.swing.JButton btnBuscarPorHora;
     private javax.swing.JButton btnBuscarRuta;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -341,13 +394,15 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable2;
     private javax.swing.JTable jTableBusquedaidPasajero;
     private javax.swing.JTable jTablePorRuta;
+    private javax.swing.JTable jTablebusquedaHora;
+    private javax.swing.JTextField jtFindHora;
     private javax.swing.JTextField jtcodigoPasajero;
     private javax.swing.JTextField jtcodigoRuta;
     // End of variables declaration//GEN-END:variables
@@ -355,6 +410,20 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         int indice = modelo.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {
             modelo.removeRow(i);
+        }
+    }
+
+    private void borrarFilaTabla2() {
+        int indice = modelo2.getRowCount() - 1;
+        for (int i = indice; i >= 0; i--) {
+            modelo2.removeRow(i);
+        }
+    }
+
+    private void borrarFilaTabla3() {
+        int indice = modelo3.getRowCount() - 1;
+        for (int i = indice; i >= 0; i--) {
+            modelo3.removeRow(i);
         }
     }
 
