@@ -45,7 +45,9 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         hData = new HorarioData();
         pasajeData = new PasajeData();
         pData = new PasajeroData();
+        listaPasajeros = (ArrayList<Pasajero>) pData.listarPasajeros();
         rData = new RutaData();
+        listaRutas = (ArrayList<Ruta>) rData.listarRuta();
         modelo = new DefaultTableModel();
 
 //        cargarAlumno();
