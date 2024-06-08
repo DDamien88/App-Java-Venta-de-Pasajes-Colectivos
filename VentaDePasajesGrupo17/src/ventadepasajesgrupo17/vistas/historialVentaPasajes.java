@@ -5,7 +5,18 @@
 package ventadepasajesgrupo17.vistas;
 
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import ventadepasajesgrupo17.accesoADatos.ColectivoData;
+import ventadepasajesgrupo17.accesoADatos.HorarioData;
+import ventadepasajesgrupo17.accesoADatos.PasajeData;
+import ventadepasajesgrupo17.accesoADatos.PasajeroData;
+import ventadepasajesgrupo17.accesoADatos.RutaData;
+import ventadepasajesgrupo17.entidades.Colectivo;
+import ventadepasajesgrupo17.entidades.Horario;
+import ventadepasajesgrupo17.entidades.Pasaje;
+import ventadepasajesgrupo17.entidades.Pasajero;
+import ventadepasajesgrupo17.entidades.Ruta;
 
 /**
  *
@@ -13,11 +24,32 @@ import javax.swing.table.DefaultTableModel;
  */
 public class historialVentaPasajes extends javax.swing.JInternalFrame {
 
-   private DefaultTableModel modelo;
-   
+    private List<Colectivo> listaColes;
+    private List<Horario> listaHorarios;
+    private List<Pasaje> listaPasajes;
+    private List<Pasajero> listaPasajeros;
+    private List<Ruta> listaRutas;
+
+    private ColectivoData coleData;
+    private HorarioData hData;
+    private PasajeData pasajeData;
+    private PasajeroData pData;
+    private RutaData rData;
+    private DefaultTableModel modelo;
+
     public historialVentaPasajes() {
         initComponents();
-        armarCabeceraTabla();
+
+        coleData = new ColectivoData();
+        listaColes = (ArrayList<Colectivo>) coleData.listarColes();
+        hData = new HorarioData();
+        pasajeData = new PasajeData();
+        pData = new PasajeroData();
+        rData = new RutaData();
+        modelo = new DefaultTableModel();
+
+//        cargarAlumno();
+//        armarCabeceraTabla();
     }
 
     private void armarCabeceraTabla() {
@@ -30,6 +62,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         }
         jtMaterias.setModel(modelo);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
