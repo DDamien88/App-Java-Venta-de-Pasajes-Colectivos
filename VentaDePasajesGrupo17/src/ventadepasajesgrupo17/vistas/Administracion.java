@@ -1,4 +1,9 @@
 package ventadepasajesgrupo17.vistas;
+
+import java.awt.Graphics;
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
 public class Administracion extends javax.swing.JFrame {
 
     /**
@@ -20,7 +25,16 @@ public class Administracion extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono= new ImageIcon(getClass().getResource("/VentaDePasajesGrupo17/recursos/coles.jpg"));
+        Image miImagen=icono.getImage();
+        escritorio = new javax.swing.JDesktopPane() {
+
+            public void paintComponent(Graphics g){
+
+                g.drawImage(miImagen,0,0,getWidth(), getHeight(), this);
+
+            }
+        };
         jMenuBar1 = new javax.swing.JMenuBar();
         jmGestionRuta = new javax.swing.JMenu();
         jmAgregarRutas = new javax.swing.JMenuItem();
@@ -37,6 +51,7 @@ public class Administracion extends javax.swing.JFrame {
         jmAgregarVenta = new javax.swing.JMenuItem();
         jmGestionVenta = new javax.swing.JMenuItem();
         jmSalir = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         jMenu1.setText("jMenu1");
 
@@ -110,7 +125,7 @@ public class Administracion extends javax.swing.JFrame {
         jmAgregarVenta.setText("Añadir Venta ");
         jmGestionVentas.add(jmAgregarVenta);
 
-        jmGestionVenta.setText("Gestion Pasaje");
+        jmGestionVenta.setText("Historial de ventas");
         jmGestionVenta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jmGestionVentaActionPerformed(evt);
@@ -126,6 +141,15 @@ public class Administracion extends javax.swing.JFrame {
                 jmSalirActionPerformed(evt);
             }
         });
+
+        jMenuItem1.setText("Seguro?");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jmSalir.add(jMenuItem1);
+
         jMenuBar1.add(jmSalir);
 
         setJMenuBar(jMenuBar1);
@@ -180,6 +204,10 @@ public class Administracion extends javax.swing.JFrame {
         escritorio.add(historial);
     }//GEN-LAST:event_jmGestionVentaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -219,6 +247,7 @@ public class Administracion extends javax.swing.JFrame {
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jmAgregarHorario;
     private javax.swing.JMenuItem jmAgregarPasajeros;
     private javax.swing.JMenuItem jmAgregarRutas;
