@@ -67,6 +67,13 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
         armarCabeceraTabla3();
     }
 
+//    private DefaultTableModel modeloTabla = new DefaultTableModel() {
+//        @Override
+//        public boolean isCellEditable(int row, int column) {
+//            return false;
+//        }
+//    };
+
     private void armarCabeceraTabla() {
         ArrayList<Object> filaCabecera = new ArrayList<>();
         filaCabecera.add("Código pasaje");
@@ -94,7 +101,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
 
     private void armarCabeceraTabla3() {
         ArrayList<Object> filaCabecera3 = new ArrayList<>();
-        filaCabecera3.add("Código Horario");
+        filaCabecera3.add("Código Pasaje");
         filaCabecera3.add("Hora de salida");
         filaCabecera3.add("Fecha");
         filaCabecera3.add("Colectivo");
@@ -150,6 +157,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTablePorRuta.setEnabled(false);
         jScrollPane1.setViewportView(jTablePorRuta);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
@@ -182,6 +190,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTablebusquedaHora.setEnabled(false);
         jScrollPane2.setViewportView(jTablebusquedaHora);
 
         jTableBusquedaidPasajero.setModel(new javax.swing.table.DefaultTableModel(
@@ -195,6 +204,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableBusquedaidPasajero.setEnabled(false);
         jScrollPane3.setViewportView(jTableBusquedaidPasajero);
 
         jLabel6.setText("Código: ");
@@ -344,6 +354,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
 
     private void btnBuscarRutaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarRutaActionPerformed
         borrarFilaTabla();
+        //DefaultTableModel modelo = (DefaultTableModel) jTablePorRuta.getModel();
         try {
             Integer codigo = Integer.parseInt(jtcodigoRuta.getText());
             List<Pasaje> lista = pasajeData.listarPasajesPorRuta(codigo);
@@ -374,7 +385,7 @@ public class historialVentaPasajes extends javax.swing.JInternalFrame {
             LocalTime codigo3 = LocalTime.parse(jtFindHora.getText());
             List<Pasaje> listaH = pasajeData.listarPasajesPorHorario(codigo3);
             for (Pasaje pas : listaH) {
-                modelo3.addRow(new Object[]{pas.getId_pasaje(), pas.getHora_viaje(), pas.getFecha_viaje() , pas.getColectivo().getMatricula()});
+                modelo3.addRow(new Object[]{pas.getId_pasaje(), pas.getHora_viaje(), pas.getFecha_viaje(), pas.getColectivo().getMatricula()});
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
