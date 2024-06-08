@@ -15,7 +15,13 @@
       <SubComponents>
         <Menu class="javax.swing.JMenu" name="jmGestionRuta">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ventadepasajesgrupo17/recursos/rutas.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Rutas"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[100, 32767]"/>
+            </Property>
           </Properties>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="jmAgregarRutas">
@@ -32,6 +38,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmGestionHorario">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ventadepasajesgrupo17/recursos/horarios.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Horarios"/>
           </Properties>
           <SubComponents>
@@ -49,6 +58,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmGestionPasajeros">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ventadepasajesgrupo17/recursos/pasajeros.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Pasajeros"/>
           </Properties>
           <SubComponents>
@@ -72,6 +84,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmColectivos">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ventadepasajesgrupo17/recursos/colectivo.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Colectivo"/>
           </Properties>
           <SubComponents>
@@ -87,6 +102,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmGestionVentas">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ventadepasajesgrupo17/recursos/ventas.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Ventas"/>
           </Properties>
           <SubComponents>
@@ -94,6 +112,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="A&#xf1;adir Venta "/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmAgregarVentaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmGestionVenta">
               <Properties>
@@ -107,6 +128,9 @@
         </Menu>
         <Menu class="javax.swing.JMenu" name="jmSalir">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/ventadepasajesgrupo17/recursos/salir.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Salir"/>
           </Properties>
           <Events>
@@ -173,7 +197,7 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="585" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="551" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>

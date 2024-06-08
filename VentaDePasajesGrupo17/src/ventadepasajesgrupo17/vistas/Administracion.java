@@ -65,10 +65,12 @@ public class Administracion extends javax.swing.JFrame {
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 585, Short.MAX_VALUE)
+            .addGap(0, 551, Short.MAX_VALUE)
         );
 
+        jmGestionRuta.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventadepasajesgrupo17/recursos/rutas.png"))); // NOI18N
         jmGestionRuta.setText("Rutas");
+        jmGestionRuta.setMaximumSize(new java.awt.Dimension(100, 32767));
 
         jmAgregarRutas.setText("Añadir Rutas");
         jmGestionRuta.add(jmAgregarRutas);
@@ -78,6 +80,7 @@ public class Administracion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmGestionRuta);
 
+        jmGestionHorario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventadepasajesgrupo17/recursos/horarios.png"))); // NOI18N
         jmGestionHorario.setText("Horarios");
 
         jmAgregarHorario.setText("Añadir Horario");
@@ -88,6 +91,7 @@ public class Administracion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmGestionHorario);
 
+        jmGestionPasajeros.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventadepasajesgrupo17/recursos/pasajeros.png"))); // NOI18N
         jmGestionPasajeros.setText("Pasajeros");
 
         jmAgregarPasajeros.setText("Añadir Pasajeros");
@@ -108,6 +112,7 @@ public class Administracion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmGestionPasajeros);
 
+        jmColectivos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventadepasajesgrupo17/recursos/colectivo.png"))); // NOI18N
         jmColectivos.setText("Colectivo");
 
         jmGestionColectivos.setText("Gestion Colectivo");
@@ -120,9 +125,15 @@ public class Administracion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmColectivos);
 
+        jmGestionVentas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventadepasajesgrupo17/recursos/ventas.png"))); // NOI18N
         jmGestionVentas.setText("Ventas");
 
         jmAgregarVenta.setText("Añadir Venta ");
+        jmAgregarVenta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAgregarVentaActionPerformed(evt);
+            }
+        });
         jmGestionVentas.add(jmAgregarVenta);
 
         jmGestionVenta.setText("Historial de ventas");
@@ -135,6 +146,7 @@ public class Administracion extends javax.swing.JFrame {
 
         jMenuBar1.add(jmGestionVentas);
 
+        jmSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ventadepasajesgrupo17/recursos/salir.png"))); // NOI18N
         jmSalir.setText("Salir");
         jmSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -207,6 +219,14 @@ public class Administracion extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jmAgregarVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarVentaActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        RegistrarVenta venta = new RegistrarVenta();
+        venta.setVisible(true);
+        escritorio.add(venta);
+    }//GEN-LAST:event_jmAgregarVentaActionPerformed
 
     /**
      * @param args the command line arguments
