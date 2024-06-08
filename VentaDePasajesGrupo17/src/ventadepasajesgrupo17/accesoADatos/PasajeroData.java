@@ -117,7 +117,7 @@ public class PasajeroData {
     public List<Pasajero> listarPasajeros() {
         ArrayList<Pasajero> pasajeros = new ArrayList<>();
 
-        String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros AND estado = 1";
+        String sql = "SELECT id_pasajero, nombre, apellido, dni, correo, telefono FROM pasajeros WHERE estado = 1";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);

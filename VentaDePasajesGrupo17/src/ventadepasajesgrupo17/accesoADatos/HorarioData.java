@@ -80,19 +80,22 @@ public class HorarioData {
         }
     }
 
-    public List<Horario> verHorariosDisponible(Horario horario) {
+    public List<Horario> verHorariosDisponible(int id_ruta) {
         ArrayList<Horario> horas = new ArrayList<>();
         String sql = "SELECT hora_salida, hora_llegada FROM horarios WHERE id_ruta = ? AND estado = 1 ";
+        int cont = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, horario.getRuta().getId_ruta());
+            ps.setInt(1, id_ruta);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while(rs.next()) {
                 Horario hor = new Horario();
                 hor.setHora_salida(rs.getTime("hora_salida").toLocalTime());
                 hor.setHora_llegada(rs.getTime("hora_llegada").toLocalTime());
                 horas.add(hor);
-            } else {
+                cont++;
+            } 
+            if(cont == 0) {
                 JOptionPane.showMessageDialog(null, "No existe la ruta");
             }
             ps.close();
@@ -104,23 +107,28 @@ public class HorarioData {
 
     }
 
-    public List<Horario> buscarHorariosPorRuta(Horario horario) {
+    public List<Horario> buscarHorariosPorRuta(int idRuta) {//pasar ruta por parametro o id_ruta
         ArrayList<Horario> horas = new ArrayList<>();
+        int cont=0;
         String sql = "SELECT id_horario, hora_salida, hora_llegada FROM horarios WHERE id_ruta = ? AND estado = 1";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, horario.getRuta().getId_ruta());
+            ps.setInt(1, idRuta);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            
+            while(rs.next()) {
                 Horario hora = new Horario();
                 hora.setId_horario(rs.getInt("id_horario"));
                 hora.setHora_salida(rs.getTime("hora_salida").toLocalTime());
                 hora.setHora_llegada(rs.getTime("hora_llegada").toLocalTime());
                 horas.add(hora);
-            } else {
+                cont++;
+            } 
+            ps.close();
+
+            if(cont == 0) {
                 JOptionPane.showMessageDialog(null, "No existe la ruta");
             }
-            ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Horarios");

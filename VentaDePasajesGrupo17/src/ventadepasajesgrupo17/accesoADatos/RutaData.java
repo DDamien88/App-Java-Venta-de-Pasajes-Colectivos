@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package ventadepasajesgrupo17.accesoADatos;
 
 import java.sql.*;
@@ -83,7 +80,7 @@ public class RutaData {
 
     public void eliminarRuta(int id_ruta) {
 
-        String sql = "UPDATE rutas SET estado = 0 WHERE id_rutas = ?";
+        String sql = "UPDATE rutas SET estado = 0 WHERE id_ruta = ?";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
@@ -105,10 +102,10 @@ public class RutaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while(rs.next()) {
                 Ruta rut = new Ruta();
                 rut.setId_ruta(rs.getInt("id_ruta"));
-                rut.setOrigen("origen");
+                rut.setOrigen(rs.getString("origen"));
                 rut.setDestino(rs.getString("destino"));
                 rut.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
                 rut.setEstado(true);
@@ -125,12 +122,12 @@ public class RutaData {
     public List<Ruta> buscarOrigen(String origen) {
         ArrayList<Ruta> rutas = new ArrayList<>();
 
-        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1";
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE origen = ? AND estado= 1 ";
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, origen);
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while(rs.next()) {
                 Ruta ruta = new Ruta();
                 ruta.setId_ruta(rs.getInt("id_ruta"));
                 ruta.setOrigen(rs.getString("origen"));
@@ -138,9 +135,7 @@ public class RutaData {
                 ruta.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
                 ruta.setEstado(true);
                 rutas.add(ruta);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe el origen");
-            }
+            } 
             ps.close();
 
         } catch (SQLException ex) {
