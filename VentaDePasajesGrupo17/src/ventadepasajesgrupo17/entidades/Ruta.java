@@ -1,4 +1,4 @@
- /*
+/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -11,6 +11,7 @@ import java.time.LocalTime;
  * @author Damián
  */
 public class Ruta {
+
     private int id_ruta;
     private String origen;
     private String destino;
@@ -77,12 +78,7 @@ public class Ruta {
 
     @Override
     public String toString() {
-        return "Ruta{" + "id_ruta=" + id_ruta + ", origen=" + origen + ", destino=" + destino + ", duracion_estimada=" + duracion_estimada + ", estado=" + estado + '}';
+        return "{" +  id_ruta + " "+ origen + " "+  destino + '}';
     }
 
-    
-    
-    
-    
-    
 }
