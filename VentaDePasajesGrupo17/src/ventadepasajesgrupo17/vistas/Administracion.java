@@ -12,7 +12,7 @@ public class Administracion extends javax.swing.JFrame {
     public Administracion() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setSize(900, 700);
+        this.setSize(1010, 700);
     }
 
     /**

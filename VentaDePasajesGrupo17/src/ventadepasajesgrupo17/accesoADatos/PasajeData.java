@@ -45,7 +45,7 @@ public class PasajeData {
             if (rs.next()) {
                 pasaje.setId_pasaje(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Venta registrada! " + "\n"
-                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
+                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + "DNI: " + pasaje.getPasajero().getDni()+ "\n" + "Ruta: " + pasaje.getRuta().getOrigen()+ " - " + pasaje.getRuta().getDestino() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
             }
             ps.close();
 

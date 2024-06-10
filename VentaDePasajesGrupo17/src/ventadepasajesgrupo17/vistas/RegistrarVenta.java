@@ -1,8 +1,6 @@
 package ventadepasajesgrupo17.vistas;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -46,6 +44,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
 
     public RegistrarVenta() {
         initComponents();
+
         coleData = new ColectivoData();
         listaColes = (ArrayList<Colectivo>) coleData.listarColes();
         hData = new HorarioData();
@@ -137,15 +136,15 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 14, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 543, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel3.setText("Hora de salida:");
+        jLabel3.setText("Hora:");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Precio:");
@@ -179,7 +178,6 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jTableVentaPasaje.setEnabled(false);
         jScrollPane1.setViewportView(jTableVentaPasaje);
 
         btnAnular.setBackground(new java.awt.Color(204, 0, 0));
@@ -201,27 +199,18 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(btnRegistrar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnAnular)
-                        .addGap(110, 110, 110))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(cbPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cbPasajeros, javax.swing.GroupLayout.PREFERRED_SIZE, 424, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(57, 57, 57)
+                                .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77)
+                                .addComponent(cbHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, 185, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -233,14 +222,20 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 499, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(308, 308, 308)))
+                                .addComponent(jScrollPane1))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(374, 374, 374)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(87, 87, 87)
+                        .addComponent(btnRegistrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnAnular)
+                        .addGap(330, 330, 330)))
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -249,17 +244,16 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbPasajeros)
+                    .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(cbPasajeros)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -271,24 +265,24 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(108, 108, 108))
+                            .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnAnular)
+                        .addGap(28, 28, 28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)))
-                .addGap(11, 11, 11)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegistrar)
-                    .addComponent(btnAnular))
-                .addGap(24, 24, 24))
+                        .addComponent(btnRegistrar)
+                        .addGap(38, 38, 38))))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-        borrarFilaTabla();
+
+        int cantAsiento = 0;
         try {
             Integer asiento = Integer.parseInt(jtAsiento.getText());
             Double precio = Double.parseDouble(jtPrecio.getText());
@@ -298,51 +292,61 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
             Pasajero pasajero = (Pasajero) cbPasajeros.getSelectedItem();
             Horario horarioSeleccionado = (Horario) cbHorarios.getSelectedItem();
 
+            if (asiento == null || precio == null) {
+                JOptionPane.showMessageDialog(this, "Los campos precio o asiento no pueden estar vacíos");
+                return;
+            }
+
             if (rutaSeleccionada == null || colec == null || pasajero == null || horarioSeleccionado == null) {
                 JOptionPane.showMessageDialog(this, "Debe seleccionar ruta, colectivo, pasajero y horario");
                 return;
             }
 
-            // Verificar si el asiento está disponible
-            if (RegistroAsientosOcupados.verificarAsientoDisponible(asiento)) {
-                // Actualizar el registro de asientos ocupados
-                RegistroAsientosOcupados.actualizarAsientosOcupados(asiento);
+            pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
 
-                // Registrar la venta del pasaje
-                pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
+            cantAsiento = asiento++;
+            if (cantAsiento <= colec.getCapacidad()) {
                 pasajeData.registrarVenta(pasaje);
                 JOptionPane.showMessageDialog(this, "Venta registrada con éxito");
+                modelo.addRow(new Object[]{pasaje.getId_pasaje(), pasaje.getPasajero().getId_pasajero(), pasaje.getColectivo().getId_colectivo(), pasaje.getRuta().getId_ruta(), pasaje.getFecha_viaje(), pasaje.getHora_viaje(), pasaje.getAsiento(), pasaje.getPrecio()});
+                jtAsiento.setText("");
+                jtPrecio.setText("");
             } else {
-                JOptionPane.showMessageDialog(this, "El asiento seleccionado ya está ocupado");
+                JOptionPane.showMessageDialog(this, "Colectivo lleno!");
             }
+
+            //} while (cantAsiento <= colec.getCapacidad());
+            // Verificar si el asiento está disponible
+            //if (RegistroAsientosOcupados.verificarAsientoDisponible(asiento)) {
+            // Actualizar el registro de asientos ocupados
+            //RegistroAsientosOcupados.actualizarAsientosOcupados(asiento);
+            // Registrar la venta del pasaje
+            //pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
+            //pasajeData.registrarVenta(pasaje);
+            // JOptionPane.showMessageDialog(this, "Venta registrada con éxito");
+            //} else {
+            //JOptionPane.showMessageDialog(this, "El asiento seleccionado ya está ocupado");
+            //}
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
         }
 
-        modelo.addRow(new Object[]{pasaje.getId_pasaje(), pasaje.getPasajero().getId_pasajero(), pasaje.getColectivo().getId_colectivo(), pasaje.getRuta().getId_ruta(), pasaje.getFecha_viaje(), pasaje.getHora_viaje(), pasaje.getAsiento(), pasaje.getPrecio()});
-        
-        jtAsiento.setText("");
-        jtPrecio.setText("");
-        
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
         int filaSeleccionada = jTableVentaPasaje.getSelectedRow();
         if (filaSeleccionada != -1) {
-            //Alumno alu = (Alumno) cboxAlumno.getSelectedItem();
-            //Materia mater = (Materia) cboxAlumno.getSelectedItem();
-            
-            
+
             int codigoP = (Integer) modelo.getValueAt(filaSeleccionada, 1);
             int codigoC = (Integer) modelo.getValueAt(filaSeleccionada, 2);
             int codigoR = (Integer) modelo.getValueAt(filaSeleccionada, 3);
             //String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
             //double nota = Double.parseDouble( (String)modelo.getValueAt(filaSeleccionada, 2));
-           // System.out.println(pasaje.getId_pasaje());
+            // System.out.println(pasaje.getId_pasaje());
             //System.out.println(codigo);
             pasajeData.anularVenta(codigoP, codigoC, codigoR);
-            
-            borrarFilaTabla();
+
         }
     }//GEN-LAST:event_btnAnularActionPerformed
 
