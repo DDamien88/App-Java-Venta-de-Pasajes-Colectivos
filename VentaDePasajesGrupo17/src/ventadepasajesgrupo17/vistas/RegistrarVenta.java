@@ -128,13 +128,10 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         cbHorarios = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableVentaPasaje = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        btnAnular = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setClosable(true);
-        setIconifiable(true);
-        setMaximizable(true);
-        setResizable(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -182,11 +179,17 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTableVentaPasaje.setEnabled(false);
         jScrollPane1.setViewportView(jTableVentaPasaje);
 
-        jButton1.setBackground(new java.awt.Color(204, 0, 0));
-        jButton1.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jButton1.setText("Anular");
+        btnAnular.setBackground(new java.awt.Color(204, 0, 0));
+        btnAnular.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnAnular.setText("Anular");
+        btnAnular.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAnularActionPerformed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Arial Black", 1, 24)); // NOI18N
         jLabel1.setText("Venta de pasajes");
@@ -201,7 +204,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                         .addGap(91, 91, 91)
                         .addComponent(btnRegistrar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1)
+                        .addComponent(btnAnular)
                         .addGap(110, 110, 110))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +280,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                 .addGap(11, 11, 11)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegistrar)
-                    .addComponent(jButton1))
+                    .addComponent(btnAnular))
                 .addGap(24, 24, 24))
         );
 
@@ -323,14 +326,34 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
+    private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
+        int filaSeleccionada = jTableVentaPasaje.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            //Alumno alu = (Alumno) cboxAlumno.getSelectedItem();
+            //Materia mater = (Materia) cboxAlumno.getSelectedItem();
+            
+            
+            int codigoP = (Integer) modelo.getValueAt(filaSeleccionada, 1);
+            int codigoC = (Integer) modelo.getValueAt(filaSeleccionada, 2);
+            int codigoR = (Integer) modelo.getValueAt(filaSeleccionada, 3);
+            //String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
+            //double nota = Double.parseDouble( (String)modelo.getValueAt(filaSeleccionada, 2));
+           // System.out.println(pasaje.getId_pasaje());
+            //System.out.println(codigo);
+            pasajeData.anularVenta(codigoP, codigoC, codigoR);
+            
+            borrarFilaTabla();
+        }
+    }//GEN-LAST:event_btnAnularActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAnular;
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<Colectivo> cbColes;
     private javax.swing.JComboBox<Horario> cbHorarios;
     private javax.swing.JComboBox<Pasajero> cbPasajeros;
     private javax.swing.JComboBox<Ruta> cbRutas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
