@@ -24,6 +24,7 @@ import ventadepasajesgrupo17.entidades.Ruta;
  */
 public class RegistrarVenta extends javax.swing.JInternalFrame {
 
+    private Set<Integer> asientosSeleccionados = new HashSet<>();
     private List<Colectivo> listaColes;
     private List<Horario> listaHorarios;
     private List<Pasaje> listaPasajes;
@@ -282,7 +283,6 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
 
-        int cantAsiento = 0;
         try {
             Integer asiento = Integer.parseInt(jtAsiento.getText());
             Double precio = Double.parseDouble(jtPrecio.getText());
@@ -302,35 +302,36 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                 return;
             }
 
-            pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
-
-            cantAsiento = asiento++;
-            if (cantAsiento <= colec.getCapacidad()) {
-                pasajeData.registrarVenta(pasaje);
-                JOptionPane.showMessageDialog(this, "Venta registrada con éxito");
-                modelo.addRow(new Object[]{pasaje.getId_pasaje(), pasaje.getPasajero().getId_pasajero(), pasaje.getColectivo().getId_colectivo(), pasaje.getRuta().getId_ruta(), pasaje.getFecha_viaje(), pasaje.getHora_viaje(), pasaje.getAsiento(), pasaje.getPrecio()});
-                jtAsiento.setText("");
-                jtPrecio.setText("");
-            } else {
-                JOptionPane.showMessageDialog(this, "Colectivo lleno!");
+            // Verificar si el asiento ya ha sido seleccionado
+            if (asientosSeleccionados.contains(asiento)) {
+                JOptionPane.showMessageDialog(this, "Ese asiento ya fue seleccionado");
+                return;
             }
 
-            //} while (cantAsiento <= colec.getCapacidad());
-            // Verificar si el asiento está disponible
-            //if (RegistroAsientosOcupados.verificarAsientoDisponible(asiento)) {
-            // Actualizar el registro de asientos ocupados
-            //RegistroAsientosOcupados.actualizarAsientosOcupados(asiento);
+            // Verificar si el colectivo está lleno
+            if (asientosSeleccionados.size() >= colec.getCapacidad()) {
+                JOptionPane.showMessageDialog(this, "Colectivo lleno!");
+                return;
+            }
+
             // Registrar la venta del pasaje
-            //pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
-            //pasajeData.registrarVenta(pasaje);
-            // JOptionPane.showMessageDialog(this, "Venta registrada con éxito");
-            //} else {
-            //JOptionPane.showMessageDialog(this, "El asiento seleccionado ya está ocupado");
-            //}
+            pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
+            pasajeData.registrarVenta(pasaje);
+
+            // Agregar el asiento al conjunto de asientos seleccionados
+            asientosSeleccionados.add(asiento);
+
+            // Agregar la venta al modelo de la tabla
+            modelo.addRow(new Object[]{pasaje.getId_pasaje(), pasaje.getPasajero().getId_pasajero(), pasaje.getColectivo().getId_colectivo(), pasaje.getRuta().getId_ruta(), pasaje.getFecha_viaje(), pasaje.getHora_viaje(), pasaje.getAsiento(), pasaje.getPrecio()});
+
+            // Limpiar los campos de entrada
+            jtAsiento.setText("");
+            jtPrecio.setText("");
+
+            JOptionPane.showMessageDialog(this, "Venta registrada con éxito");
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
         }
-
 
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
@@ -341,11 +342,8 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
             int codigoP = (Integer) modelo.getValueAt(filaSeleccionada, 1);
             int codigoC = (Integer) modelo.getValueAt(filaSeleccionada, 2);
             int codigoR = (Integer) modelo.getValueAt(filaSeleccionada, 3);
-            //String nombre = (String) modelo.getValueAt(filaSeleccionada, 1);
-            //double nota = Double.parseDouble( (String)modelo.getValueAt(filaSeleccionada, 2));
-            // System.out.println(pasaje.getId_pasaje());
-            //System.out.println(codigo);
             pasajeData.anularVenta(codigoP, codigoC, codigoR);
+            //modelo.removeRow(filaSeleccionada);
 
         }
     }//GEN-LAST:event_btnAnularActionPerformed
@@ -375,6 +373,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         int indice = modelo.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {
             modelo.removeRow(i);
+
         }
     }
 
