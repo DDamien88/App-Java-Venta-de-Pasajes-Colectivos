@@ -1,5 +1,8 @@
 package ventadepasajesgrupo17.vistas;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -54,7 +57,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         cargarRutas();
         cargarColes();
         cargarPasajeros();
-        //cargarHorarios();
+        cargarHorarios();
     }
 
     private void cargarRutas() {
@@ -68,18 +71,24 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
             cbColes.addItem(it);
         }
     }
-    
-       private void cargarPasajeros() {
+
+    private void cargarPasajeros() {
+        //cbPasajeros.removeAllItems();
         for (Pasajero iter : listaPasajeros) {
             cbPasajeros.addItem(iter);
         }
     }
-       
-//           private void cargarHorarios() {
-//        for (Horario itera : listaHorarios) {
-//            cbHorarios.addItem(itera);
-//        }
-//    }
+
+    private void cargarHorarios() {
+        //cbHorarios.removeAllItems();  // Limpiamos el JComboBox de horarios
+        Ruta rutaSeleccionada = (Ruta) cbRutas.getSelectedItem();
+        if (rutaSeleccionada != null) {
+            listaHorarios = (ArrayList<Horario>) hData.buscarHorariosPorRuta(rutaSeleccionada.getId_ruta());
+            for (Horario horario : listaHorarios) {
+                cbHorarios.addItem(horario);
+            }
+        }
+    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -91,11 +100,11 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jcFecha = new com.toedter.calendar.JDateChooser();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jtPrecio = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        btnRegistrar = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         cbColes = new javax.swing.JComboBox<>();
         jLabel6 = new javax.swing.JLabel();
@@ -106,7 +115,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         jtDni = new javax.swing.JTextField();
         cbPasajeros = new javax.swing.JComboBox<>();
         btnBuscar = new javax.swing.JButton();
-        jtHora = new javax.swing.JTextField();
+        cbHorarios = new javax.swing.JComboBox<>();
 
         setClosable(true);
         setIconifiable(true);
@@ -171,14 +180,17 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel4.setText("Precio:");
 
-        jButton2.setBackground(new java.awt.Color(102, 153, 0));
-        jButton2.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
-        jButton2.setText("Registrar");
+        btnRegistrar.setBackground(new java.awt.Color(102, 153, 0));
+        btnRegistrar.setFont(new java.awt.Font("Arial Black", 0, 24)); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel5.setText("Colectivo");
-
-        cbColes.setSelectedIndex(-1);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel6.setText("Asiento:");
@@ -201,38 +213,37 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(6, 6, 6)
-                                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGap(26, 26, 26)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jtHora))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(26, 26, 26)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(6, 6, 6)
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jtAsiento, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbHorarios, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(26, 26, 26)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jcFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(91, 91, 91)
-                        .addComponent(jButton2))
+                        .addComponent(btnRegistrar))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -264,11 +275,11 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jcFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbHorarios, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -282,7 +293,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbColes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(27, 27, 27)
-                .addComponent(jButton2)
+                .addComponent(btnRegistrar)
                 .addGap(24, 24, 24))
         );
 
@@ -290,27 +301,60 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        borrarFilaTabla();
-        
+//        borrarFilaTabla();
+//        
+//        try {
+//             String dni = jtDni.getText();
+//            List<Pasajero> lista = (List<Pasajero>) pData.buscarPasajeroPorDNI(dni);
+//            //Pasajero lista = (Pasajero) cbPasajeros.getSelectedItem();
+//        //lista = inscData.obtenerMateriaNoCursadas(selec.getIdAlumno());
+//        } catch (NumberFormatException ex) {
+//            JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
+//        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         try {
-             String dni = jtDni.getText();
-            List<Pasajero> lista = (List<Pasajero>) pData.buscarPasajeroPorDNI(dni);
-            //Pasajero lista = (Pasajero) cbPasajeros.getSelectedItem();
-        //lista = inscData.obtenerMateriaNoCursadas(selec.getIdAlumno());
+            Integer asiento = Integer.parseInt(jtAsiento.getText());
+            Double precio = Double.parseDouble(jtPrecio.getText());
+
+            //java.util.Date sfecha = jcFecha.getDate();
+            /*if (sfecha == null) {
+                JOptionPane.showMessageDialog(this, "Debe ingresar la fecha del viaje");
+                return;
+            }*/
+
+            //LocalDate fechaViaje = sfecha.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+
+            Ruta rutaSeleccionada = (Ruta) cbRutas.getSelectedItem();
+            Colectivo colec = (Colectivo) cbColes.getSelectedItem();
+            Pasajero pasajero = (Pasajero) cbPasajeros.getSelectedItem();
+            Horario horarioSeleccionado = (Horario) cbHorarios.getSelectedItem();
+
+            if (rutaSeleccionada == null || colec == null || pasajero == null || horarioSeleccionado == null) {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar ruta, colectivo, pasajero y horario");
+                return;
+            }
+
+            pasaje = new Pasaje(pasajero, colec, rutaSeleccionada, LocalDate.now(), horarioSeleccionado.getHora_salida(), asiento, precio);
+            pasajeData.registrarVenta(pasaje);
+            JOptionPane.showMessageDialog(this, "Venta registrada con éxito");
+
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
         }
-    }//GEN-LAST:event_btnBuscarActionPerformed
+         
+    }//GEN-LAST:event_btnRegistrarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<Colectivo> cbColes;
+    private javax.swing.JComboBox<Horario> cbHorarios;
     private javax.swing.JComboBox<Pasajero> cbPasajeros;
     private javax.swing.JComboBox<Ruta> cbRutas;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -322,9 +366,9 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private com.toedter.calendar.JDateChooser jcFecha;
     private javax.swing.JTextField jtAsiento;
     private javax.swing.JTextField jtDni;
-    private javax.swing.JTextField jtHora;
     private javax.swing.JTextField jtPrecio;
     // End of variables declaration//GEN-END:variables
 
