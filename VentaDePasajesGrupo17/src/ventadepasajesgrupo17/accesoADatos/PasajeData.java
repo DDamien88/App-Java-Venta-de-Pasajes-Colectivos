@@ -45,7 +45,7 @@ public class PasajeData {
             if (rs.next()) {
                 pasaje.setId_pasaje(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Venta registrada! " + "\n"
-                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + "DNI: " + pasaje.getPasajero().getDni()+ "\n" + "Ruta: " + pasaje.getRuta().getOrigen()+ " - " + pasaje.getRuta().getDestino() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
+                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + "DNI: " + pasaje.getPasajero().getDni() + "\n" + "Ruta: " + pasaje.getRuta().getOrigen() + " - " + pasaje.getRuta().getDestino() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
             }
             ps.close();
 
@@ -84,8 +84,8 @@ public class PasajeData {
         return ventas;
 
     }
-    
-     public List<Pasaje> listarPasajesPorRuta(int idRuta) {
+
+    public List<Pasaje> listarPasajesPorRuta(int idRuta) {
         String sql = "SELECT id_pasaje, id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio FROM pasajes WHERE id_ruta = ? ";
         ArrayList<Pasaje> listaPasaje = new ArrayList<>();
 
@@ -115,8 +115,8 @@ public class PasajeData {
         return listaPasaje;
 
     }
-     
-     public List<Pasaje> listarPasajesPorHorario(LocalTime hora) {
+
+    public List<Pasaje> listarPasajesPorHorario(LocalTime hora) {
         String sql = "SELECT id_pasaje, id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio FROM pasajes WHERE hora_viaje = ? ";
         ArrayList<Pasaje> listaPasajes = new ArrayList<>();
 
@@ -164,4 +164,20 @@ public class PasajeData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajes ");
         }
     }
+
+    public void anularVenta(int idPasaje) {
+        String sql = "DELETE FROM pasajes WHERE id_pasaje = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idPasaje);
+            int fila = ps.executeUpdate();
+            if (fila > 0) {
+                JOptionPane.showMessageDialog(null, "Venta anulada exitosamente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajes");
+        }
+    }
+
 }

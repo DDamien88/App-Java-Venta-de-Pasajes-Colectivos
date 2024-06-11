@@ -6,6 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import ventadepasajesgrupo17.accesoADatos.ColectivoData;
 import ventadepasajesgrupo17.accesoADatos.HorarioData;
@@ -334,17 +335,24 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     private void btnAnularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnularActionPerformed
-        int filaSeleccionada = jTableVentaPasaje.getSelectedRow();
-        int columSelec = jTableVentaPasaje.getSelectedColumn();
-        if (filaSeleccionada != -1 && columSelec != -1) {
-
-            int codigoP = (Integer) modelo.getValueAt(filaSeleccionada, 1);
-            int codigoC = (Integer) modelo.getValueAt(filaSeleccionada, 2);
-            int codigoR = (Integer) modelo.getValueAt(filaSeleccionada, 3);
-            pasajeData.anularVenta(codigoP, codigoC, codigoR);
-            modelo.removeRow(filaSeleccionada);
-
+        int filaSelec = jTableVentaPasaje.getSelectedRow();
+        if (filaSelec == -1) {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar una venta para anular");
+            return;
         }
+
+        // Obtener el ID del pasaje de la fila seleccionada (asumiendo que está en la primera columna)
+        int idPasaje = (Integer) jTableVentaPasaje.getValueAt(filaSelec, 0);
+
+        // Eliminar la fila de la tabla
+        modelo.removeRow(filaSelec);
+
+        // Actualizar la base de datos
+        pasajeData.anularVenta(idPasaje);
+
+        JOptionPane.showMessageDialog(this, "Venta anulada con éxito");
+
+
     }//GEN-LAST:event_btnAnularActionPerformed
 
     private void cbColesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbColesActionPerformed
