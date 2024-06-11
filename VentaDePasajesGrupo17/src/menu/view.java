@@ -19,7 +19,7 @@ public class view extends javax.swing.JFrame {
     public view() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setSize(660, 580);
+        this.setSize(800, 600);
     }
 
     /**
@@ -34,7 +34,7 @@ public class view extends javax.swing.JFrame {
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuAnadir = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -57,13 +57,13 @@ public class view extends javax.swing.JFrame {
             }
         });
 
-        jMenuItem1.setText("Añadir Horario");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuAnadir.setText("Añadir Horario");
+        jMenuAnadir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuAnadirActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMenu1.add(jMenuAnadir);
 
         jMenuItem2.setText("Buscar Horario");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class view extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu1ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuAnadirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuAnadirActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
         FormularioHorario horario = new FormularioHorario();
@@ -103,7 +103,7 @@ public class view extends javax.swing.JFrame {
         horario.getContentPane().setBackground(new Color(68, 167, 132));
         escritorio.add(horario);
 
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMenuAnadirActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
@@ -153,8 +153,8 @@ public class view extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenuItem jMenuAnadir;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }

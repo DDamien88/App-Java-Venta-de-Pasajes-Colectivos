@@ -75,13 +75,13 @@ public class FormularioBuscarHorarios extends javax.swing.JInternalFrame {
     }
     
 
-    private void cargarDatosRutas(){
-        Ruta selec = (Ruta) jComboruta.getSelectedItem();
-        List <Horario> lista = (ArrayList) horarioData.buscarHorariosPorRuta(selec.getId_ruta());
-        for (Horario hora: lista) {
-            modelo.addRow(new Object[] {hora.getId_horario(), hora.getHora_salida(), hora.getHora_llegada()});
-        }
-    }
+//    private void cargarDatosRutas(){
+//        Ruta selec = (Ruta) jComboruta.getSelectedItem();
+//        List <Horario> lista = (ArrayList) horarioData.buscarHorariosPorRuta(selec.getId_ruta());
+//        for (Horario hora: lista) {
+//            modelo.addRow(new Object[] {hora.getId_horario(), hora.getHora_salida(), hora.getHora_llegada()});
+//        }
+//    }
     
 
     
@@ -205,26 +205,26 @@ public class FormularioBuscarHorarios extends javax.swing.JInternalFrame {
 
     private void jThoraKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jThoraKeyReleased
         // TODO add your handling code here:
-        borrarFilaTabla();
-        int hora;
-        if(validarHora(jThora.getText())){
-            hora = Integer.parseInt(jThora.getText());
-        }else{
-            JOptionPane.showInternalMessageDialog(this, "Ingrese un horario");
-            jThora.requestFocus();
-            return;
-        }
-        TreeSet<Horario> horaa;
-        for(Horario h: horaa){
-            if (h.getDescripcion().toLowerCase().startsWith(hora)) {
-                Vector renglon=new Vector();
-                renglon.add(h.getId_horario());
-                renglon.add(h.getHora_salida());
-                renglon.add(h.getHora_llegada());
-                modelo.addRow(renglon); 
-                
-            }
-        }
+//        borrarFilaTabla();
+//        int hora;
+//        if(validarHora(jThora.getText())){
+//            hora = Integer.parseInt(jThora.getText());
+//        }else{
+//            JOptionPane.showInternalMessageDialog(this, "Ingrese un horario");
+//            jThora.requestFocus();
+//            return;
+//        }
+//        TreeSet<Horario> horaa;
+//        for(Horario h: horaa){
+//            if (h.getDescripcion().toLowerCase().startsWith(hora)) {
+//                Vector renglon=new Vector();
+//                renglon.add(h.getId_horario());
+//                renglon.add(h.getHora_salida());
+//                renglon.add(h.getHora_llegada());
+//                modelo.addRow(renglon); 
+//                
+//            }
+//        }
         
     }//GEN-LAST:event_jThoraKeyReleased
 
