@@ -340,19 +340,9 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Debe seleccionar una venta para anular");
             return;
         }
-
-        // Obtener el ID del pasaje de la fila seleccionada (asumiendo que está en la primera columna)
         int idPasaje = (Integer) jTableVentaPasaje.getValueAt(filaSelec, 0);
-
-        // Eliminar la fila de la tabla
         modelo.removeRow(filaSelec);
-
-        // Actualizar la base de datos
         pasajeData.anularVenta(idPasaje);
-
-        JOptionPane.showMessageDialog(this, "Venta anulada con éxito");
-
-
     }//GEN-LAST:event_btnAnularActionPerformed
 
     private void cbColesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbColesActionPerformed
