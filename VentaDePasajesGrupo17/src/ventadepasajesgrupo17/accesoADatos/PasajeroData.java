@@ -135,7 +135,6 @@ public class PasajeroData {
                 pasajeros.add(pasajero);
             }
             ps.close();
-
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "No se puede acceder a la tabla pasajeros");
         }
