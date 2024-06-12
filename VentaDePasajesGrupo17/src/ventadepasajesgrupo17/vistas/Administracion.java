@@ -73,6 +73,11 @@ public class Administracion extends javax.swing.JFrame {
         jmGestionRuta.setMaximumSize(new java.awt.Dimension(100, 32767));
 
         jmAgregarRutas.setText("Añadir Rutas");
+        jmAgregarRutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAgregarRutasActionPerformed(evt);
+            }
+        });
         jmGestionRuta.add(jmAgregarRutas);
 
         jmBuscarRutas.setText("Buscar Rutas");
@@ -240,6 +245,14 @@ public class Administracion extends javax.swing.JFrame {
         anadirHora.setVisible(true);
         escritorio.add(anadirHora);
     }//GEN-LAST:event_jmAgregarHorarioActionPerformed
+
+    private void jmAgregarRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarRutasActionPerformed
+       escritorio.removeAll();
+        escritorio.repaint();
+        AgregarRuta anadirRuta = new AgregarRuta();
+        anadirRuta.setVisible(true);
+        escritorio.add(anadirRuta);
+    }//GEN-LAST:event_jmAgregarRutasActionPerformed
 
     /**
      * @param args the command line arguments
