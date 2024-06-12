@@ -59,17 +59,19 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
         jrEstado = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         jBotoneliminar = new javax.swing.JButton();
-        jBotonactualizar = new javax.swing.JButton();
         jBotonsalir = new javax.swing.JButton();
         cbRutas = new javax.swing.JComboBox<>();
         jBotonuevo = new javax.swing.JButton();
 
         jLabel1.setText("Añadir Horario");
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel2.setText("Hora de Llegada:");
 
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel3.setText("Hora de Salida:");
 
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel4.setText("Elegir Ruta:");
 
         jBotonguardar.setText("Guardar");
@@ -79,6 +81,7 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Estado:");
 
         jBotoneliminar.setText("Eliminar");
@@ -87,8 +90,6 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
                 jBotoneliminarActionPerformed(evt);
             }
         });
-
-        jBotonactualizar.setText("Actualizar");
 
         jBotonsalir.setText("Salir");
         jBotonsalir.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +112,9 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
-                .addGap(490, 490, 490))
+                .addGap(18, 18, 18)
+                .addComponent(jThorallegada, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(374, 374, 374))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -127,30 +130,24 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cbRutas, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addComponent(jrEstado))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jBotonguardar)
                                 .addGap(44, 44, 44)
                                 .addComponent(jBotoneliminar)
-                                .addGap(26, 26, 26)
-                                .addComponent(jBotonactualizar)
-                                .addGap(39, 39, 39)
-                                .addComponent(jBotonsalir))))
+                                .addGap(50, 50, 50)
+                                .addComponent(jBotonsalir))
+                            .addComponent(jrEstado)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(178, 178, 178)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(121, 121, 121)
+                        .addGap(59, 59, 59)
                         .addComponent(jLabel3)
-                        .addGap(42, 42, 42)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jThorallegada, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jThorasalida, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(26, 26, 26)
+                        .addComponent(jThorasalida, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(94, 94, 94)
                         .addComponent(jBotonuevo)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,18 +164,17 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jThorasalida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jThorallegada, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(42, 42, 42)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(jThorallegada, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39)
                         .addComponent(jLabel5))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jrEstado)))
                 .addGap(84, 84, 84)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jBotonactualizar)
                     .addComponent(jBotoneliminar)
                     .addComponent(jBotonguardar)
                     .addComponent(jBotonsalir)
@@ -226,7 +222,6 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<Ruta> cbRutas;
-    private javax.swing.JButton jBotonactualizar;
     private javax.swing.JButton jBotoneliminar;
     private javax.swing.JButton jBotonguardar;
     private javax.swing.JButton jBotonsalir;

@@ -84,6 +84,11 @@ public class Administracion extends javax.swing.JFrame {
         jmGestionHorario.setText("Horarios");
 
         jmAgregarHorario.setText("Añadir Horario");
+        jmAgregarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmAgregarHorarioActionPerformed(evt);
+            }
+        });
         jmGestionHorario.add(jmAgregarHorario);
 
         jmBuscarHorario.setText("Buscar Horario");
@@ -205,7 +210,7 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_jmGestionColectivosActionPerformed
 
     private void jmSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmSalirActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_jmSalirActionPerformed
 
     private void jmGestionVentaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionVentaActionPerformed
@@ -227,6 +232,14 @@ public class Administracion extends javax.swing.JFrame {
         venta.setVisible(true);
         escritorio.add(venta);
     }//GEN-LAST:event_jmAgregarVentaActionPerformed
+
+    private void jmAgregarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarHorarioActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        FormularioHorario anadirHora = new FormularioHorario();
+        anadirHora.setVisible(true);
+        escritorio.add(anadirHora);
+    }//GEN-LAST:event_jmAgregarHorarioActionPerformed
 
     /**
      * @param args the command line arguments
