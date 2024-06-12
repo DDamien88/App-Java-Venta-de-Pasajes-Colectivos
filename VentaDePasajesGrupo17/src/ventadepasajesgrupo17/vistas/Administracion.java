@@ -3,6 +3,9 @@ package ventadepasajesgrupo17.vistas;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
+import vistas.AñadirPasajero;
+import vistas.BuscarHorario;
+import vistas.BuscarPasajero;
 
 public class Administracion extends javax.swing.JFrame {
 
@@ -81,6 +84,11 @@ public class Administracion extends javax.swing.JFrame {
         jmGestionRuta.add(jmAgregarRutas);
 
         jmBuscarRutas.setText("Buscar Rutas");
+        jmBuscarRutas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmBuscarRutasActionPerformed(evt);
+            }
+        });
         jmGestionRuta.add(jmBuscarRutas);
 
         jMenuBar1.add(jmGestionRuta);
@@ -97,6 +105,11 @@ public class Administracion extends javax.swing.JFrame {
         jmGestionHorario.add(jmAgregarHorario);
 
         jmBuscarHorario.setText("Buscar Horario");
+        jmBuscarHorario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmBuscarHorarioActionPerformed(evt);
+            }
+        });
         jmGestionHorario.add(jmBuscarHorario);
 
         jMenuBar1.add(jmGestionHorario);
@@ -191,19 +204,19 @@ public class Administracion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmAgregarPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarPasajerosActionPerformed
-        /*escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
-        AñadirPasajero aluXMat = new AñadirPasajero();
-        aluXMat.setVisible(true);
-        escritorio.add(aluXMat);*/
+        AñadirPasajero anadirPasajero = new AñadirPasajero();
+        anadirPasajero.setVisible(true);
+        escritorio.add(anadirPasajero);
     }//GEN-LAST:event_jmAgregarPasajerosActionPerformed
 
     private void jmBuscarPasajerosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarPasajerosActionPerformed
-        /*escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
-        //BuscarPasajero aluXMat = new BuscarPasajero();
-        aluXMat.setVisible(true);
-        escritorio.add(aluXMat);*/
+        BuscarPasajero buscarPas = new BuscarPasajero();
+        buscarPas.setVisible(true);
+        escritorio.add(buscarPas);
     }//GEN-LAST:event_jmBuscarPasajerosActionPerformed
 
     private void jmGestionColectivosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmGestionColectivosActionPerformed
@@ -247,12 +260,28 @@ public class Administracion extends javax.swing.JFrame {
     }//GEN-LAST:event_jmAgregarHorarioActionPerformed
 
     private void jmAgregarRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmAgregarRutasActionPerformed
-       escritorio.removeAll();
+        escritorio.removeAll();
         escritorio.repaint();
         AgregarRuta anadirRuta = new AgregarRuta();
         anadirRuta.setVisible(true);
         escritorio.add(anadirRuta);
     }//GEN-LAST:event_jmAgregarRutasActionPerformed
+
+    private void jmBuscarRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarRutasActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        BuscarRuta buscarRuta = new BuscarRuta();
+        buscarRuta.setVisible(true);
+        escritorio.add(buscarRuta);
+    }//GEN-LAST:event_jmBuscarRutasActionPerformed
+
+    private void jmBuscarHorarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmBuscarHorarioActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        BuscarHorario buscarHoras = new BuscarHorario();
+        buscarHoras.setVisible(true);
+        escritorio.add(buscarHoras);
+    }//GEN-LAST:event_jmBuscarHorarioActionPerformed
 
     /**
      * @param args the command line arguments
