@@ -1,4 +1,3 @@
-
 package ventadepasajesgrupo17.accesoADatos;
 
 import java.sql.*;
@@ -102,7 +101,7 @@ public class RutaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Ruta rut = new Ruta();
                 rut.setId_ruta(rs.getInt("id_ruta"));
                 rut.setOrigen(rs.getString("origen"));
@@ -127,7 +126,7 @@ public class RutaData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setString(1, origen);
             ResultSet rs = ps.executeQuery();
-            while(rs.next()) {
+            while (rs.next()) {
                 Ruta ruta = new Ruta();
                 ruta.setId_ruta(rs.getInt("id_ruta"));
                 ruta.setOrigen(rs.getString("origen"));
@@ -135,7 +134,7 @@ public class RutaData {
                 ruta.setDuracion_estimada(rs.getTime("duracion_estimada").toLocalTime());
                 ruta.setEstado(true);
                 rutas.add(ruta);
-            } 
+            }
             ps.close();
 
         } catch (SQLException ex) {
@@ -169,6 +168,25 @@ public class RutaData {
         }
         return rutas;
     }
+
+    /*public Ruta buscarRutaPorId(int idRuta) {
+        Ruta ruta = null;
+        String sql = "SELECT * FROM rutas WHERE id_ruta = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idRuta);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                String nombre = rs.getString("nombre");
+                ruta = new Ruta(idRuta);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla rutas");
+        }
+        return ruta;
+    }*/
 
     public Ruta buscarRuta(int id) {
 

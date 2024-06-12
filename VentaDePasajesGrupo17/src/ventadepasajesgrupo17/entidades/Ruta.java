@@ -21,6 +21,7 @@ public class Ruta {
     public Ruta() {
     }
 
+
     public Ruta(int id_ruta, String origen, String destino, LocalTime duracion_estimada, boolean estado) {
         this.id_ruta = id_ruta;
         this.origen = origen;
