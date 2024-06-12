@@ -78,7 +78,7 @@ public class Ruta {
 
     @Override
     public String toString() {
-        return "Ruta{" + "id_ruta=" + id_ruta + ", origen=" + origen + ", destino=" + destino + ", duracion_estimada=" + duracion_estimada + ", estado=" + estado + '}';
+        return "Ruta{" + "" + id_ruta + ", " + origen + ", " + destino + ", " + duracion_estimada + '}';
     }
 
 }

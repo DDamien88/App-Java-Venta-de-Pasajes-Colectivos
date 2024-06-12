@@ -57,6 +57,8 @@ public class gestionColectivos extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
 
+        jPanel1.setBackground(new java.awt.Color(255, 0, 0));
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel1.setText("Código:");
 
