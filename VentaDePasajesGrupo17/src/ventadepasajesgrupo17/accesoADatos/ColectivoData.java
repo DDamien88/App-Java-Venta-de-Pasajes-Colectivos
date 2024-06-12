@@ -4,7 +4,7 @@
  */
 package ventadepasajesgrupo17.accesoADatos;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -90,7 +90,6 @@ public class ColectivoData {
     }
 
     public Colectivo buscarColectivo(int id) {
-        //Agregar estado
         String sql = "SELECT matricula, marca, modelo, capacidad FROM colectivos WHERE id_colectivo = ? AND estado = 1 ";
         Colectivo cole = null;
         try {
@@ -116,7 +115,6 @@ public class ColectivoData {
     }
 
     public List<Colectivo> listarColes() {
-        //Cambiar estado
         String sql = "SELECT id_colectivo, matricula, marca, modelo, capacidad, estado FROM colectivos WHERE estado = 1";
         ArrayList<Colectivo> coles = new ArrayList<>();
 

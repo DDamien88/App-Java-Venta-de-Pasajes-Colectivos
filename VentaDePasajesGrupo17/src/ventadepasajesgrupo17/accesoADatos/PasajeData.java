@@ -5,11 +5,11 @@
 package ventadepasajesgrupo17.accesoADatos;
 
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import ventadepasajesgrupo17.entidades.Colectivo;
-import ventadepasajesgrupo17.entidades.Horario;
 import ventadepasajesgrupo17.entidades.Pasaje;
 import ventadepasajesgrupo17.entidades.Pasajero;
 import ventadepasajesgrupo17.entidades.Ruta;
@@ -45,7 +45,7 @@ public class PasajeData {
             if (rs.next()) {
                 pasaje.setId_pasaje(rs.getInt(1));
                 JOptionPane.showMessageDialog(null, "Venta registrada! " + "\n"
-                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
+                        + " Pasaje: " + pasaje.getId_pasaje() + "\n" + "DNI: " + pasaje.getPasajero().getDni() + "\n" + "Ruta: " + pasaje.getRuta().getOrigen() + " - " + pasaje.getRuta().getDestino() + "\n" + " Asiento: " + pasaje.getAsiento() + "\n" + " Fecha del viaje: " + pasaje.getFecha_viaje() + "\n" + " Hora del viaje: " + pasaje.getHora_viaje() + "\n");
             }
             ps.close();
 
@@ -116,6 +116,37 @@ public class PasajeData {
 
     }
 
+    public List<Pasaje> listarPasajesPorHorario(LocalTime hora) {
+        String sql = "SELECT id_pasaje, id_pasajero, id_colectivo, id_ruta, fecha_viaje, hora_viaje, asiento, precio FROM pasajes WHERE hora_viaje = ? ";
+        ArrayList<Pasaje> listaPasajes = new ArrayList<>();
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setTime(1, Time.valueOf(hora));
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Pasaje pasa = new Pasaje();
+                pasa.setId_pasaje(rs.getInt("id_pasaje"));
+                Pasajero pasajero = pd.buscarPasajero(rs.getInt("id_pasajero"));
+                Colectivo cole = coleData.buscarColectivo(rs.getInt("id_colectivo"));
+                Ruta ruta = rd.buscarRuta(rs.getInt("id_ruta"));
+                pasa.setPasajero(pasajero);
+                pasa.setColectivo(cole);
+                pasa.setRuta(ruta);
+                pasa.setFecha_viaje(rs.getDate("fecha_viaje").toLocalDate());
+                pasa.setHora_viaje(rs.getTime("hora_viaje").toLocalTime());
+                pasa.setAsiento(rs.getInt("asiento"));
+                pasa.setPrecio(rs.getDouble("precio"));
+                listaPasajes.add(pasa);
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Pasajes");
+        }
+        return listaPasajes;
+
+    }
+
     public void anularVenta(int idPasajero, int idColectivo, int idRuta) {
         String sql = "DELETE FROM pasajes WHERE id_pasajero = ? AND id_colectivo = ? AND id_ruta = ? ";
         try {
@@ -133,4 +164,20 @@ public class PasajeData {
             JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajes ");
         }
     }
+
+    public void anularVenta(int idPasaje) {
+        String sql = "DELETE FROM pasajes WHERE id_pasaje = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idPasaje);
+            int fila = ps.executeUpdate();
+            if (fila > 0) {
+                JOptionPane.showMessageDialog(null, "Venta anulada exitosamente");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla pasajes");
+        }
+    }
+
 }
