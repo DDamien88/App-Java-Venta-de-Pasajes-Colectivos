@@ -146,7 +146,7 @@ public class RutaData {
 
     public List<Ruta> buscarDestino(String destino) {
         ArrayList<Ruta> rutas = new ArrayList<>();
-        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE estado= 1";
+        String sql = "SELECT id_ruta , origen , destino, duracion_estimada, estado FROM rutas WHERE destino = ? AND estado = 1";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
