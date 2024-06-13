@@ -251,7 +251,7 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBotoneliminarActionPerformed
 
     private void jBotonguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotonguardarActionPerformed
-        horaActual = null;
+        //horaActual = null;
         try {
             Ruta rut = (Ruta) cbRutas.getSelectedItem();
             LocalTime hSalida = LocalTime.parse(jThorasalida.getText());

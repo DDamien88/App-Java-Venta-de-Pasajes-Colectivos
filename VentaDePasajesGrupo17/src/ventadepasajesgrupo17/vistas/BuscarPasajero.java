@@ -7,9 +7,11 @@ import ventadepasajesgrupo17.accesoADatos.PasajeroData;
 import ventadepasajesgrupo17.entidades.Pasajero;
 
 public class BuscarPasajero extends javax.swing.JInternalFrame {
-private DefaultTableModel modelo;
-private PasajeroData pd;
-private List<Pasajero> listaP;
+
+    private DefaultTableModel modelo;
+    private PasajeroData pd;
+    private List<Pasajero> listaP;
+
     /**
      * Creates new form BuscarPasajero
      */
@@ -19,27 +21,29 @@ private List<Pasajero> listaP;
         armarCabeceraTabla();
         pd = new PasajeroData();
     }
-    private void armarCabeceraTabla(){
-    ArrayList<Object> filaCabecera = new ArrayList<>();
-    filaCabecera.add("ID");
-    filaCabecera.add("Nombre");
-    filaCabecera.add("Apellido");
-    filaCabecera.add("DNI");
-    filaCabecera.add("Correo");
-    filaCabecera.add("Telefono");
 
-    for (Object it : filaCabecera) {
+    private void armarCabeceraTabla() {
+        ArrayList<Object> filaCabecera = new ArrayList<>();
+        filaCabecera.add("ID");
+        filaCabecera.add("Nombre");
+        filaCabecera.add("Apellido");
+        filaCabecera.add("DNI");
+        filaCabecera.add("Correo");
+        filaCabecera.add("Telefono");
+
+        for (Object it : filaCabecera) {
             modelo.addColumn(it);
         }
-       jtTablaPasajeros.setModel(modelo);
+        jtTablaPasajeros.setModel(modelo);
     }
-    
-    private void borrarFilaTabla(){
-    int indice = modelo.getRowCount()-1;
-        for (int i = indice; i >=0; i--) {
+
+    private void borrarFilaTabla() {
+        int indice = modelo.getRowCount() - 1;
+        for (int i = indice; i >= 0; i--) {
             modelo.removeRow(i);
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -115,27 +119,27 @@ private List<Pasajero> listaP;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(30, 30, 30)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jtBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(142, 142, 142)
-                                        .addComponent(jrListar)
-                                        .addGap(137, 137, 137))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel3)
-                                        .addGap(81, 81, 81)))
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jtBuscarApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jtBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(142, 142, 142)
+                                .addComponent(jrListar)
+                                .addGap(137, 137, 137))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3)
+                                .addGap(81, 81, 81)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel2)
+                            .addComponent(jtBuscarApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(187, 187, 187)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(105, 105, 105)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(44, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,9 +157,9 @@ private List<Pasajero> listaP;
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtBuscarNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jtBuscarApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -176,7 +180,10 @@ private List<Pasajero> listaP;
         borrarFilaTabla();
         listaP = pd.listarPasajeros();
         for (Pasajero p : listaP) {
-            modelo.addRow(new Object[] { p.getId_pasajero(), p.getNombre(), p.getApellido(), p.getDni(), p.getCorreo(), p.getTelefono()});
+            modelo.addRow(new Object[]{p.getId_pasajero(), p.getNombre(), p.getApellido(), p.getDni(), p.getCorreo(), p.getTelefono()});
+        }
+        if (!jrListar.isSelected()) {
+            borrarFilaTabla();
         }
     }//GEN-LAST:event_jrListarActionPerformed
 
@@ -185,7 +192,7 @@ private List<Pasajero> listaP;
         String nombre = jtBuscarNombre.getText();
         listaP = pd.buscarPasajeroPorNombre(nombre);
         for (Pasajero p : listaP) {
-            modelo.addRow(new Object[] { p.getId_pasajero(), p.getNombre(), p.getApellido(), p.getDni(), p.getCorreo(), p.getTelefono()});
+            modelo.addRow(new Object[]{p.getId_pasajero(), p.getNombre(), p.getApellido(), p.getDni(), p.getCorreo(), p.getTelefono()});
         }
     }//GEN-LAST:event_jtBuscarNombreActionPerformed
 
@@ -194,7 +201,7 @@ private List<Pasajero> listaP;
         String apellido = jtBuscarApellido.getText();
         listaP = pd.buscarPasajeroPorApellido(apellido);
         for (Pasajero p : listaP) {
-            modelo.addRow(new Object[] { p.getId_pasajero(), p.getNombre(), p.getApellido(), p.getDni(), p.getCorreo(), p.getTelefono()});
+            modelo.addRow(new Object[]{p.getId_pasajero(), p.getNombre(), p.getApellido(), p.getDni(), p.getCorreo(), p.getTelefono()});
         }
     }//GEN-LAST:event_jtBuscarApellidoActionPerformed
 
