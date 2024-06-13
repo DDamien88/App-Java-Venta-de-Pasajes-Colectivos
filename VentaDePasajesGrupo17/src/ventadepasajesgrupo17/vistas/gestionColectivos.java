@@ -248,6 +248,7 @@ public class gestionColectivos extends javax.swing.JInternalFrame {
             if (cole == null) {
                 cole = new Colectivo(matricula, marca, modelo, capacidad, true);
                 coleData.guardarColectivo(cole);
+                JOptionPane.showMessageDialog(null, "Colectivo Agregado");
             } else {
                 cole.setMatricula(matricula);
                 cole.setMarca(marca);
