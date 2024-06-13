@@ -21,6 +21,7 @@ private PasajeroData pd = new PasajeroData();
         jtCorreo.setText("");
         jtTelefono.setText("");
         jrEstado.setSelected(false);
+        pasajeroActual=null;
     }
     //validaciones:
         private boolean validarEntero(String nro){
@@ -271,6 +272,7 @@ private PasajeroData pd = new PasajeroData();
 
         pd.actualizarPasajero(pasajeroActual);
     }
+    limpiarCampos();
     }//GEN-LAST:event_jbAgregarActionPerformed
 
     private void jbLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbLimpiarActionPerformed
