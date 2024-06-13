@@ -60,7 +60,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         cargarRutas();
         cargarColes();
         cargarPasajeros();
-        cargarHorarios();
+        
         armarCabeceraTabla();
     }
 
@@ -132,6 +132,8 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
         btnAnular = new javax.swing.JButton();
 
         setClosable(true);
+        setMaximizable(true);
+        setResizable(true);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -364,7 +366,8 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cbColesActionPerformed
 
     private void cbRutasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbRutasActionPerformed
-        // TODO add your handling code here:
+        cbHorarios.removeAllItems();
+        cargarHorarios();
     }//GEN-LAST:event_cbRutasActionPerformed
 
 
@@ -386,7 +389,7 @@ public class RegistrarVenta extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jtAsiento;
     private javax.swing.JTextField jtPrecio;
     // End of variables declaration//GEN-END:variables
-
+    
     private void borrarFilaTabla() {
         int indice = modelo.getRowCount() - 1;
         for (int i = indice; i >= 0; i--) {

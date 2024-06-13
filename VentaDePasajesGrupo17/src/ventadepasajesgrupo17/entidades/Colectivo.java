@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ventadepasajesgrupo17.entidades;
 
 public class Colectivo {
@@ -83,7 +79,7 @@ public class Colectivo {
 
     @Override
     public String toString() {
-        return "Colectivo{" + "id_colectivo=" + id_colectivo + ", matricula=" + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad + ", estado=" + estado + '}';
+        return  id_colectivo + ", " + matricula + ", marca=" + marca + ", modelo=" + modelo + ", capacidad=" + capacidad;
     }
 
 }

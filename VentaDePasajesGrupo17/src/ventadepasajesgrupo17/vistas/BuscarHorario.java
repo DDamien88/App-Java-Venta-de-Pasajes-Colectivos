@@ -1,4 +1,4 @@
-package vistas;
+package ventadepasajesgrupo17.vistas;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;

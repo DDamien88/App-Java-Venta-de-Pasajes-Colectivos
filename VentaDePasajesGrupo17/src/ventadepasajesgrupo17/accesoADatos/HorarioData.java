@@ -167,15 +167,13 @@ public class HorarioData {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setTime(1, Time.valueOf(hora_salida));
             ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
+            while(rs.next()) {
                 Horario hora = new Horario();
                 Ruta rutas = new Ruta();
                 hora.setId_horario(rs.getInt("id_horario"));
                 hora.setHora_salida(rs.getTime("hora_salida").toLocalTime());
                 hora.setHora_llegada(rs.getTime("hora_llegada").toLocalTime());
                 horas.add(hora);
-            } else {
-                JOptionPane.showMessageDialog(null, "No existe la ruta");
             }
             ps.close();
 

@@ -3,9 +3,9 @@ package ventadepasajesgrupo17.vistas;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import vistas.AñadirPasajero;
-import vistas.BuscarHorario;
-import vistas.BuscarPasajero;
+import ventadepasajesgrupo17.vistas.AñadirPasajero;
+import ventadepasajesgrupo17.vistas.BuscarHorario;
+import ventadepasajesgrupo17.vistas.BuscarPasajero;
 
 public class Administracion extends javax.swing.JFrame {
 

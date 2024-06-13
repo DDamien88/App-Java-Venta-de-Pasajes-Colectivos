@@ -1,4 +1,4 @@
-package vistas;
+package ventadepasajesgrupo17.vistas;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
