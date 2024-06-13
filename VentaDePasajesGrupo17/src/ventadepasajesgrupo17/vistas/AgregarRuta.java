@@ -48,6 +48,9 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jtOrigen = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jID = new javax.swing.JLabel();
+        jTID = new javax.swing.JTextField();
+        jBID = new javax.swing.JButton();
 
         setClosable(true);
 
@@ -122,6 +125,16 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Rutas");
 
+        jID.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jID.setText("ID");
+
+        jBID.setText("Buscar");
+        jBID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBIDActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -130,30 +143,37 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jBEliminar)
-                                .addGap(50, 50, 50)
+                                .addGap(51, 51, 51)
                                 .addComponent(jBNuevo)
-                                .addGap(49, 49, 49)
+                                .addGap(48, 48, 48)
                                 .addComponent(jbGuardar))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jRadioEstado))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioEstado))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(jtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(jPanel1Layout.createSequentialGroup()
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel5)
-                                        .addComponent(jLabel3))
-                                    .addGap(18, 18, 18)
+                                        .addComponent(jID, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(jBID)))))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(153, 153, 153)
                         .addComponent(jLabel1)))
@@ -164,28 +184,37 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(15, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(42, 42, 42)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jID)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jBID)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(jtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel3))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jtOrigen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jtDestino, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel4)
+                    .addComponent(jtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jRadioEstado))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jRadioEstado, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEliminar)
                     .addComponent(jBNuevo)
                     .addComponent(jbGuardar))
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -212,7 +241,7 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
 
     private void jbGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuardarActionPerformed
         try{
-
+            
         String origen=jtOrigen.getText();
         String destino= jtDestino.getText();
         LocalTime duracion ;
@@ -242,6 +271,7 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
             rutaActual=new Ruta(origen, destino, duracion, estado); //edito aca
             rutData.guardarRuta(rutaActual);
         }else{
+            
             rutaActual.setOrigen(origen);
             rutaActual.setDestino(destino);
             rutaActual.setDuracion_estimada(duracion);
@@ -249,7 +279,7 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
        
         }
         }catch(DateTimeParseException e){
-            JOptionPane.showMessageDialog(this,"Error formato hh:mm"+e);
+            JOptionPane.showMessageDialog(this,"Error formato hh:mm");
         }
         
     }//GEN-LAST:event_jbGuardarActionPerformed
@@ -279,6 +309,25 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
     private void jtOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtOrigenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jtOrigenActionPerformed
+
+    private void jBIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIDActionPerformed
+        // Buscar
+        
+        try{
+            
+            int id= Integer.parseInt(jTID.getText());
+            rutaActual=rutData.buscarRuta(id);
+            if(rutaActual!=null){
+                jtOrigen.setText(rutaActual.getOrigen());
+                jtDestino.setText(rutaActual.getDestino());
+                jtDuracion.setText(String.valueOf(rutaActual.getDuracion_estimada()));
+            }else {
+                JOptionPane.showMessageDialog(this, "No se encontró una ruta con ese ID");
+            }
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Debe ingresar un número válido");
+        }
+    }//GEN-LAST:event_jBIDActionPerformed
     
     private boolean validarDuracion(String duracion){
         try{
@@ -298,8 +347,10 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBID;
     private javax.swing.JButton jBNuevo;
     private javax.swing.JFileChooser jFileChooser1;
+    private javax.swing.JLabel jID;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -307,6 +358,7 @@ public class AgregarRuta extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRadioEstado;
+    private javax.swing.JTextField jTID;
     private javax.swing.JButton jbGuardar;
     private javax.swing.JTextField jtDestino;
     private javax.swing.JTextField jtDuracion;

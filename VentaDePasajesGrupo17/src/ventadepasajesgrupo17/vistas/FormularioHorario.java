@@ -27,7 +27,7 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
     private Ruta ruta;
     private Horario horario;
     private List<Ruta> listaR;
-    private Horario horaActual;
+    private Horario horaActual=null;
 
     private HorarioData hdata;
     private RutaData rdata;
@@ -35,7 +35,7 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
     public FormularioHorario() {
         initComponents();
         jrEstado.setSelected(true);
-        horaActual = null;
+        
         ruta = new Ruta();
         horario = new Horario();
         hdata = new HorarioData();
@@ -294,13 +294,14 @@ public class FormularioHorario extends javax.swing.JInternalFrame {
 
         try {
             int codigo = Integer.parseInt(jtCodigoHora.getText());
-            Horario horario = hdata.buscarHorarios(codigo);
-            if (horario != null) {
+            horaActual=hdata.buscarHorarios(codigo);
+            //Horario horario = hdata.buscarHorarios(codigo);
+            if (horaActual != null) {
                 //cbRutas.setSelectedItem(horario.getRuta());
-                jThorasalida.setText(horario.getHora_salida().toString());
-                jThorallegada.setText(horario.getHora_llegada().toString());
-                jrEstado.setSelected(horario.isEstado());
-                jtCodigoRuta.setText(String.valueOf(horario.getRuta().getId_ruta())); // Llenar jtCodigoRuta con el ID de la ruta
+                jThorasalida.setText(horaActual.getHora_salida().toString());
+                jThorallegada.setText(horaActual.getHora_llegada().toString());
+                jrEstado.setSelected(horaActual.isEstado());
+                jtCodigoRuta.setText(String.valueOf(horaActual.getRuta().getId_ruta())); // Llenar jtCodigoRuta con el ID de la ruta
             } else {
                 JOptionPane.showMessageDialog(this, "No se encontró un horario con ese ID");
             }
