@@ -151,7 +151,7 @@ public class HorarioData {
             ps.close();
 
             if (cont == 0) {
-                JOptionPane.showMessageDialog(null, "No existe la ruta");
+                JOptionPane.showMessageDialog(null, "No hay horario para la ruta seleccionada.");
             }
 
         } catch (SQLException ex) {
